@@ -61,9 +61,14 @@ RadioButton {
 
                 // Subtle inner shadow for inset look
                 Rectangle {
-                    anchors { top: parent.top; left: parent.left; right: parent.right; margins: 1 }
-                    height: 1
-                    color: Qt.rgba(0,0,0,0.2)
+                    anchors { 
+                        top: parent.top
+                        left: parent.left
+                        right: parent.right
+                        margins: 2
+                    }
+                    height: 2
+                    color: Qt.rgba(0,0,0,0.15)
                     radius: width / 2
                 }
             }
@@ -72,9 +77,9 @@ RadioButton {
         // Center dot
         Rectangle {
             anchors.centerIn: parent
-            width: 5
-            height: 5
-            radius: 2.5
+            width: 4
+            height: 4
+            radius: 2
             color: "white"
             visible: control.checked
         }

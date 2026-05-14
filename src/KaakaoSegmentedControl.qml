@@ -35,10 +35,10 @@ Control {
             id: selectionIndicator
             property Item currentItem: repeater.itemAt(control.currentIndex)
             
-            x: currentItem ? currentItem.x : 0
-            y: 0
-            width: currentItem ? currentItem.width : 0
-            height: parent.height
+            x: currentItem ? currentItem.x + 1 : 1
+            y: 1
+            width: currentItem ? (control.currentIndex < repeater.count - 1 ? currentItem.width - 1 : currentItem.width - 2) : 0
+            height: parent.height - 2
             radius: Theme.radiusSmall - 1
             z: 0
 
@@ -48,8 +48,14 @@ Control {
                 start: Qt.point(0, 0)
                 end: Qt.point(0, height)
                 gradient: Gradient {
-                    GradientStop { position: 0.0; color: Theme.isDarkMode ? "#666" : "#FFF" }
-                    GradientStop { position: 1.0; color: Theme.isDarkMode ? "#444" : "#EEE" }
+                    GradientStop { 
+                        position: 0.0
+                        color: Theme.isDarkMode ? "#555" : "#FFF" 
+                    }
+                    GradientStop { 
+                        position: 1.0
+                        color: Theme.isDarkMode ? "#333" : "#EEE" 
+                    }
                 }
             }
             
