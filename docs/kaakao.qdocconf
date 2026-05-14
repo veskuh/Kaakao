@@ -34,12 +34,17 @@ qhp.Kaakao.subprojects.manual.selectors = qmlclass qmlproperty qmlmethod qmlsign
 
 # Input files
 sources = ../src/Button.qml \
+          ../src/KaakaoCheckBox.qml \
           ../src/KaakaoDialog.qml \
+          ../src/KaakaoFocusRing.qml \
           ../src/KaakaoLabel.qml \
+          ../src/KaakaoRadioButton.qml \
+          ../src/KaakaoSegmentedControl.qml \
           ../src/KaakaoTextField.qml \
+          ../src/KaakaoToolBar.qml \
+          ../src/KaakaoToolButton.qml \
           ../src/KaakaoWindow.qml \
           ../src/Theme.qml \
-          ../src/KaakaoFocusRing.qml \
           kaakao-overview.qdoc
 
 sources.fileextensions = "*.qml *.qdoc"

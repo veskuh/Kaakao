@@ -86,6 +86,12 @@ QtObject {
     */
     readonly property color textFieldInnerShadow: isDarkMode ? Qt.rgba(0,0,0,0.5) : Qt.rgba(0,0,0,0.15)
 
+    // ToolBar Colors
+    readonly property color toolbarBorder: isDarkMode ? "#000000" : "#C4C4C4"
+    readonly property color toolButtonHovered: isDarkMode ? "#2A2A2A" : "#E6E6E6"
+    readonly property color toolButtonPressed: isDarkMode ? "#3A3A3A" : "#D9D9D9"
+    readonly property color toolButtonBorder: isDarkMode ? "#121212" : "#B0B0B0"
+
     // Primary/Accent Button
     /*! \qmlproperty color Theme::accentGradTop
         The top color of the primary accent button gradient.

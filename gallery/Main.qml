@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls.Basic
+import QtQuick.Layouts
 import Kaakao
 import Gallery
 
@@ -9,6 +10,40 @@ KaakaoWindow {
     height: 480
     visible: true
     title: qsTr("Kaakao Component Gallery")
+
+    header: KaakaoToolBar {
+        RowLayout {
+            anchors.fill: parent
+            anchors.leftMargin: 8
+            anchors.rightMargin: 8
+            spacing: 4
+            
+            KaakaoToolButton {
+                text: "Back"
+                icon.name: "go-previous"
+            }
+            KaakaoToolButton {
+                text: "Forward"
+                icon.name: "go-next"
+            }
+            
+            Item { Layout.preferredWidth: 8 } // Spacer
+            
+            KaakaoToolButton {
+                text: "Refresh"
+                icon.name: "view-refresh"
+            }
+            
+            Item {
+                Layout.fillWidth: true
+            } // Flexible spacer
+            
+            KaakaoToolButton {
+                text: "Search"
+                icon.name: "edit-find"
+            }
+        }
+    }
 
     menuBar: MenuBar {
         Menu {
