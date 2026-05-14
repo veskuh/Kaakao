@@ -13,4 +13,7 @@ qt_add_qml_module(Kaakao
         KaakaoDialog.qml
         KaakaoTextField.qml
         KaakaoFocusRing.qml
+        KaakaoCheckBox.qml
+        KaakaoRadioButton.qml
+        KaakaoSegmentedControl.qml
 )

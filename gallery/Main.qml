@@ -73,6 +73,26 @@ KaakaoWindow {
                 width: 150
             }
 
+            KaakaoLabel { text: "Choice Controls:" }
+            Row {
+                spacing: 12
+                KaakaoCheckBox { text: "Option A"; checked: true }
+                KaakaoCheckBox { text: "Option B" }
+            }
+
+            KaakaoLabel { text: "Radio Group:" }
+            Row {
+                spacing: 12
+                KaakaoRadioButton { text: "Choice 1"; checked: true }
+                KaakaoRadioButton { text: "Choice 2" }
+            }
+
+            KaakaoLabel { text: "Segmented:" }
+            KaakaoSegmentedControl {
+                model: ["Grid", "List", "Tree"]
+                currentIndex: 1
+            }
+
             KaakaoLabel { text: "Small Detail:" }
             KaakaoLabel {
                 text: "This is a small label role"
