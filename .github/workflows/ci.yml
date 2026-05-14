@@ -24,7 +24,7 @@ jobs:
       uses: jurplel/install-qt-action@v3
       with:
         version: '6.7.0'
-        modules: 'qt5compat qtlanguageserver shadertools'
+        modules: 'qt5compat qtlanguageserver qtshadertools'
 
     - name: Configure CMake
       run: cmake -B build -DCMAKE_BUILD_TYPE=Release
