@@ -23,4 +23,6 @@ qt_add_qml_module(Kaakao
         KaakaoComboBox.qml
         KaakaoSlider.qml
         KaakaoProgressBar.qml
+        KaakaoSearchField.qml
+        KaakaoDisclosureTriangle.qml
 )

@@ -48,9 +48,10 @@ KaakaoWindow {
                 Layout.fillWidth: true
             } // Flexible spacer
             
-            KaakaoToolButton {
-                text: "Search"
-                iconEmoji: "🔍"
+            KaakaoSearchField {
+                placeholderText: "Search..."
+                Layout.preferredWidth: 150
+                onSearchRequested: (query) => console.log("Searching for:", query)
             }
         }
     }
@@ -207,6 +208,34 @@ KaakaoWindow {
                             role: KaakaoLabel.Role.Small
                             Layout.alignment: Qt.AlignLeft
                         }
+
+                        KaakaoLabel { 
+                            text: "Disclosure:" 
+                            Layout.alignment: Qt.AlignRight
+                        }
+                        ColumnLayout {
+                            spacing: 4
+                            Layout.alignment: Qt.AlignLeft
+                            KaakaoDisclosureTriangle {
+                                id: disclosure
+                                text: "Advanced Options"
+                            }
+                            Rectangle {
+                                visible: disclosure.expanded
+                                Layout.preferredWidth: 150
+                                Layout.preferredHeight: 40
+                                color: Theme.isDarkMode ? "#333" : "#F0F0F0"
+                                radius: 4
+                                border.color: Theme.buttonBorder
+                                border.width: 1
+                                
+                                KaakaoLabel {
+                                    anchors.centerIn: parent
+                                    text: "Hidden Content"
+                                    role: KaakaoLabel.Role.Small
+                                }
+                            }
+                        }
                     }
 
                     Item { Layout.preferredHeight: 40 } // Bottom Spacer
@@ -245,6 +274,16 @@ KaakaoWindow {
                         KaakaoTextField {
                             placeholderText: "Type something..."
                             width: 150
+                            Layout.alignment: Qt.AlignLeft
+                        }
+
+                        KaakaoLabel { 
+                            text: "Search Input:" 
+                            Layout.alignment: Qt.AlignRight
+                        }
+                        KaakaoSearchField {
+                            placeholderText: "Search items..."
+                            Layout.preferredWidth: 150
                             Layout.alignment: Qt.AlignLeft
                         }
 
