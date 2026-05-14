@@ -35,9 +35,9 @@ Control {
             id: selectionIndicator
             property Item currentItem: repeater.itemAt(control.currentIndex)
             
-            x: currentItem ? currentItem.x + 1 : 1
+            x: currentItem ? currentItem.x + (control.currentIndex === 0 ? 1 : 0) : 0
             y: 1
-            width: currentItem ? currentItem.width - 2 : 0
+            width: currentItem ? currentItem.width - (control.currentIndex === 0 ? 2 : 1) : 0
             height: parent.height - 2
             radius: Theme.radiusSmall - 1
             z: 0
@@ -100,7 +100,7 @@ Control {
 
                 // Divider (except for the last item)
                 Rectangle {
-                    anchors { right: parent.right; top: parent.top; bottom: parent.bottom; margins: 4 }
+                    anchors { right: parent.right; top: parent.top; bottom: parent.bottom; topMargin: 1; bottomMargin: 1 }
                     width: 1
                     color: Theme.buttonBorder
                     visible: index < repeater.count - 1
