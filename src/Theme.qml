@@ -22,6 +22,10 @@ QtObject {
     readonly property color buttonPressed: isDarkMode ? "#3A3A3A" : "#D9D9D9"
     readonly property color buttonShadow: Qt.rgba(0,0,0, isDarkMode ? 0.3 : 0.05)
 
+    // TextField Colors
+    readonly property color textFieldBorder: isDarkMode ? "#1A1A1A" : "#B0B0B0"
+    readonly property color textFieldInnerShadow: isDarkMode ? Qt.rgba(0,0,0,0.5) : Qt.rgba(0,0,0,0.15)
+
     // Primary/Accent Button
     readonly property color accentGradTop: isDarkMode ? "#3AB2FF" : "#34A1FF"
     readonly property color accentGradBottom: isDarkMode ? "#0A84FF" : "#007AFF"

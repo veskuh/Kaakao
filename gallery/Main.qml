@@ -67,6 +67,12 @@ KaakaoWindow {
                 focus: true
             }
 
+            KaakaoLabel { text: "Text Input:" }
+            KaakaoTextField {
+                placeholderText: "Type something..."
+                width: 150
+            }
+
             KaakaoLabel { text: "Small Detail:" }
             KaakaoLabel {
                 text: "This is a small label role"

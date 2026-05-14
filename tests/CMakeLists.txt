@@ -1,5 +1,5 @@
 # Copy QML files to build directory for execution
-file(COPY tst_theme.qml tst_button.qml tst_window.qml tst_label.qml tst_dialog.qml tst_about.qml DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
+file(COPY tst_theme.qml tst_button.qml tst_window.qml tst_label.qml tst_dialog.qml tst_about.qml tst_textfield.qml DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
 
 # Theme Test
 qt_add_executable(tst_theme main.cpp)
@@ -42,4 +42,11 @@ target_link_libraries(tst_about PRIVATE Qt6::Core Qt6::Gui Qt6::Qml Qt6::Quick Q
 target_compile_definitions(tst_about PRIVATE QUICK_TEST_SOURCE_DIR="${CMAKE_CURRENT_BINARY_DIR}")
 add_test(NAME tst_about COMMAND tst_about -input tst_about.qml)
 set_tests_properties(tst_about PROPERTIES ENVIRONMENT "QML_IMPORT_PATH=${CMAKE_BINARY_DIR}/src:${CMAKE_BINARY_DIR}/gallery")
+
+# TextField Test
+qt_add_executable(tst_textfield main.cpp)
+target_link_libraries(tst_textfield PRIVATE Qt6::Core Qt6::Gui Qt6::Qml Qt6::Quick Qt6::Test Qt6::QuickTest Kaakao)
+target_compile_definitions(tst_textfield PRIVATE QUICK_TEST_SOURCE_DIR="${CMAKE_CURRENT_BINARY_DIR}")
+add_test(NAME tst_textfield COMMAND tst_textfield -input tst_textfield.qml)
+set_tests_properties(tst_textfield PROPERTIES ENVIRONMENT "QML_IMPORT_PATH=${CMAKE_BINARY_DIR}/src")
 
