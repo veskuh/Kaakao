@@ -1,0 +1,50 @@
+# Build directory
+build/
+
+# Qt / QML
+*.qmlc
+*.jsc
+.qt/
+*.user
+*.user.*
+CMakeSettings.json
+CMakeLists.txt.user
+*.qm
+*.qrc.depends
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+Testing/
+_deps/
+
+# C++ / Compiled Artifacts
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.so.*
+*.dylib
+*.dll
+*.exe
+*.app/
+*.out
+
+# macOS
+.DS_Store
+
+# IDEs
+.vscode/
+.idea/
+
+# Editor backups
+*~
+*.swp
+*.bak
