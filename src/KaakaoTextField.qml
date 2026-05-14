@@ -1,6 +1,16 @@
 import QtQuick
 import QtQuick.Controls.Basic
 
+/*!
+    \qmltype KaakaoTextField
+    \inqmlmodule Kaakao
+    \brief A text input field with a "sunken well" aesthetic.
+    \inherits QtQuick.Controls.TextField
+
+    KaakaoTextField implements the classic macOS text input style, featuring.
+    a 1px border and a subtle top inner shadow that creates a tangible, sunken
+    appearance. It automatically integrates a focus ring when focused.
+*/
 TextField {
     id: control
 

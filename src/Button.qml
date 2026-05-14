@@ -2,12 +2,21 @@ import QtQuick
 import QtQuick.Controls.Basic
 import Qt5Compat.GraphicalEffects
 
+/*!
+    \qmltype Button
+    \inqmlmodule Kaakao
+    \brief A push-button with classic macOS aesthetic.
+    \inherits QtQuick.Controls.Button
+
+    The Button component implements the classic macOS (Yosemite-Catalina) look and feel,
+    featuring a subtle gradient, top inner highlight, and a soft drop shadow.
+    It supports standard button states like pressed and focused.
+*/
 Button {
     id: control
-    
+
     implicitWidth: Math.max(80, contentItem.implicitWidth + 20)
     implicitHeight: 22 // Classic compact macOS height
-
     contentItem: Text {
         text: control.text
         font: Theme.defaultFont

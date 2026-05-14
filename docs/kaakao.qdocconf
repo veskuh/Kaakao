@@ -1,0 +1,51 @@
+project = Kaakao
+description = Kaakao QML Component Set Documentation
+version = 1.0.0
+
+sourcedirs = ../src .
+headerdirs = ../src .
+outputdir = html
+outputformats = HTML
+
+# Set the QML module name and version
+qmlmodules = Kaakao 1.0
+
+# HTML configuration
+HTML.stylesheets = style.css
+HTML.headerstyles = "<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\" />\n"
+
+# Navigation
+navigation.homepage = "Kaakao Overview"
+
+# QML Module
+qmlmodules = Kaakao
+qmlimport = Kaakao 1.0
+
+# QHP configuration
+qhp.projects = Kaakao
+qhp.Kaakao.file = kaakao.qhp
+qhp.Kaakao.namespace = org.kaakao.100
+qhp.Kaakao.virtualFolder = kaakao
+qhp.Kaakao.indexTitle = Kaakao Overview
+qhp.Kaakao.subprojects = manual
+qhp.Kaakao.subprojects.manual.title = Kaakao QML Component Set
+qhp.Kaakao.subprojects.manual.indexTitle = Kaakao Overview
+qhp.Kaakao.subprojects.manual.selectors = qmlclass qmlproperty qmlmethod qmlsignal qmlenumeration
+
+# Input files
+sources = ../src/Button.qml \
+          ../src/KaakaoDialog.qml \
+          ../src/KaakaoLabel.qml \
+          ../src/KaakaoTextField.qml \
+          ../src/KaakaoWindow.qml \
+          ../src/Theme.qml \
+          ../src/KaakaoFocusRing.qml \
+          kaakao-overview.qdoc
+
+sources.fileextensions = "*.qml *.qdoc"
+headers.fileextensions = "*.h"
+headerdirs = ../src .
+sourcedirs = ../src .
+
+# Exclude some files if needed
+# exclude_patterns = *tst_*.qml

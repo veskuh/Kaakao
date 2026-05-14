@@ -25,3 +25,20 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
     add_subdirectory(gallery)
     add_subdirectory(tests)
 endif()
+
+# Documentation target
+set(QDOC_EXECUTABLE "/Users/vesku/Qt/6.8.0/macos/bin/qdoc")
+set(QHELPGEN_EXECUTABLE "/Users/vesku/Qt/6.8.0/macos/libexec/qhelpgenerator")
+
+if(EXISTS ${QDOC_EXECUTABLE} AND EXISTS ${QHELPGEN_EXECUTABLE})
+    add_custom_target(docs
+        COMMAND ${CMAKE_COMMAND} -E rm -rf ${CMAKE_CURRENT_SOURCE_DIR}/docs/html
+        COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_SOURCE_DIR}/docs/html
+        COMMAND ${QDOC_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/docs/kaakao.qdocconf
+        COMMAND ${QHELPGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/docs/html/kaakao.qhp -o ${CMAKE_CURRENT_SOURCE_DIR}/docs/kaakao.qch
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs
+        COMMENT "Generating Kaakao QDoc documentation"
+    )
+else()
+    message(STATUS "qdoc or qhelpgenerator not found at specified paths. 'docs' target will not be available.")
+endif()

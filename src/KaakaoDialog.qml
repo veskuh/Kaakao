@@ -1,11 +1,18 @@
 import QtQuick
 import QtQuick.Controls.Basic
 import Qt5Compat.GraphicalEffects
-import Kaakao
 
+/*!
+    \qmltype KaakaoDialog
+    \inqmlmodule Kaakao
+    \brief A modal dialog with classic macOS styling.
+    \inherits QtQuick.Controls.Dialog
+
+    KaakaoDialog provides a refined modal interface with deep drop shadows,
+    a larger corner radius, and integrated header styling using KaakaoLabel.
+*/
 Dialog {
     id: control
-    
     implicitWidth: Math.max(header.implicitWidth, contentItem.implicitWidth) + leftPadding + rightPadding
     
     background: Rectangle {

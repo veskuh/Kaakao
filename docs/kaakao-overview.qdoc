@@ -1,0 +1,59 @@
+/*!
+    \qmlmodule Kaakao 1.0
+    \title Kaakao QML Module
+    \brief A Classical macOS aesthetic library for modern Qt Quick applications.
+*/
+
+/*!
+    \page kaakao-overview
+    \title Kaakao Overview
+...
+    \brief A Classical macOS aesthetic library for modern Qt Quick applications.
+
+    Kaakao is a set of QML components designed to bring the refined, tangible feel of
+    classical macOS (Yosemite through Catalina) to Qt Quick applications.
+
+    \section1 Key Features
+
+    \list
+        \li \b {Consistent Aesthetic}: Every component is designed with attention to
+            gradients, shadows, and spacing.
+        \li \b {Theme Awareness}: Built-in support for light and dark modes.
+        \li \b {Accessibility}: High-visibility focus rings and semantic text roles.
+        \li \b {Lightweight}: Pure QML implementation with minimal dependencies.
+    \endlist
+
+    \section1 Getting Started
+
+    To use Kaakao in your project, import the module:
+
+    \code
+    import Kaakao 1.0
+    \endcode
+
+    Then you can use components like \l Button or \l KaakaoTextField:
+
+    \code
+    KaakaoWindow {
+        visible: true
+        width: 400
+        height: 300
+
+        Button {
+            text: "Push Me"
+            anchors.centerIn: parent
+        }
+    }
+    \endcode
+
+    \section1 Components
+
+    \list
+        \li \l Theme - The central styling singleton.
+        \li \l Button - A stylized push-button.
+        \li \l KaakaoLabel - A text label with semantic roles.
+        \li \l KaakaoTextField - A "sunken well" text input.
+        \li \l KaakaoWindow - The root application container.
+        \li \l KaakaoDialog - A refined modal dialog.
+    \endlist
+*/
