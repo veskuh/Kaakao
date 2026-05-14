@@ -94,6 +94,11 @@ QtObject {
     readonly property color toolButtonHovered: isDarkMode ? "#2A2A2A" : "#E6E6E6"
     readonly property color toolButtonPressed: isDarkMode ? "#3A3A3A" : "#D9D9D9"
     readonly property color toolButtonBorder: isDarkMode ? "#121212" : "#B0B0B0"
+    
+    // Sidebar Colors
+    readonly property color sidebarBackground: isDarkMode ? "#282828" : "#E8EBEF"
+    readonly property color sidebarBorder: isDarkMode ? "#121212" : "#C4C4C4"
+    readonly property color sidebarSectionText: isDarkMode ? "#8E8E8E" : "#6E6E6E"
 
     // Primary/Accent Button
     /*! \qmlproperty color Theme::accentGradTop

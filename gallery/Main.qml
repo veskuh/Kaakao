@@ -6,8 +6,8 @@ import Gallery
 
 KaakaoWindow {
     id: root
-    width: 640
-    height: 480
+    width: 900
+    height: 600
     visible: true
     title: qsTr("Kaakao Component Gallery")
 
@@ -19,12 +19,22 @@ KaakaoWindow {
             spacing: 4
             
             KaakaoToolButton {
+                text: "Sidebar"
+                iconEmoji: "📂"
+                onClicked: sidebar.collapsed = !sidebar.collapsed
+            }
+
+            Item { Layout.preferredWidth: 8 } // Spacer
+
+            KaakaoToolButton {
                 text: "Back"
                 iconEmoji: "◀"
+                enabled: false 
             }
             KaakaoToolButton {
                 text: "Forward"
                 iconEmoji: "▶"
+                enabled: false 
             }
             
             Item { Layout.preferredWidth: 8 } // Spacer
@@ -63,84 +73,187 @@ KaakaoWindow {
         copyright: "© 2026 Kaakao Contributors"
     }
 
-    Column {
-        anchors.centerIn: parent
-        spacing: 24
+    RowLayout {
+        anchors.fill: parent
+        spacing: 0
 
-        Column {
-            anchors.horizontalCenter: parent.horizontalCenter
-            spacing: 8
-            
-            KaakaoLabel {
-                text: "Kaakao Component Gallery"
-                role: KaakaoLabel.Role.Header
-                anchors.horizontalCenter: parent.horizontalCenter
-            }
-
-            KaakaoLabel {
-                text: "Classical macOS (Yosemite-Catalina) Aesthetic"
-                role: KaakaoLabel.Role.Secondary
-                anchors.horizontalCenter: parent.horizontalCenter
+        KaakaoSidebar {
+            id: sidebar
+            Layout.fillHeight: true
+            model: ListModel {
+                ListElement { name: "Components"; icon: "🧩"; category: "Library" }
+                ListElement { name: "Inputs"; icon: "⌨️"; category: "Library" }
+                ListElement { name: "Project"; icon: "📦"; category: "General" }
+                ListElement { name: "Settings"; icon: "⚙️"; category: "General" }
             }
         }
 
-        Grid {
-            columns: 2
-            spacing: 20
-            anchors.horizontalCenter: parent.horizontalCenter
-            verticalItemAlignment: Grid.AlignVCenter
+        StackLayout {
+            id: contentStack
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            currentIndex: sidebar.currentIndex
 
-            KaakaoLabel { text: "Standard Button:" }
-            Button {
-                text: "Push Me"
-                onClicked: console.log("Standard button clicked")
+            // 0: Components View
+            ScrollView {
+                id: componentsScroll
+                clip: true
+                contentWidth: availableWidth
+                
+                ColumnLayout {
+                    width: componentsScroll.availableWidth
+                    spacing: 0 // Using 0 spacing for precise manual offsets
+
+                    Item { Layout.preferredHeight: 10 } // Matches Sidebar anchors.topMargin: 10
+
+                    KaakaoLabel {
+                        text: "Core Components"
+                        role: KaakaoLabel.Role.Header
+                        Layout.alignment: Qt.AlignHCenter
+                        Layout.bottomMargin: 32 // Re-add vertical spacing below header
+                    }
+
+                    GridLayout {
+                        columns: 2
+                        columnSpacing: 20
+                        rowSpacing: 16
+                        Layout.alignment: Qt.AlignHCenter
+
+                        KaakaoLabel { 
+                            text: "Standard Button:" 
+                            Layout.alignment: Qt.AlignRight
+                        }
+                        Button {
+                            text: "Push Me"
+                            Layout.alignment: Qt.AlignLeft
+                            onClicked: console.log("Standard button clicked")
+                        }
+
+                        KaakaoLabel { 
+                            text: "Focused State:" 
+                            Layout.alignment: Qt.AlignRight
+                        }
+                        Button {
+                            text: "I am Focused"
+                            focus: true
+                            Layout.alignment: Qt.AlignLeft
+                        }
+
+                        KaakaoLabel { 
+                            text: "Segmented Control:" 
+                            Layout.alignment: Qt.AlignRight
+                        }
+                        KaakaoSegmentedControl {
+                            model: ["Grid", "List", "Tree"]
+                            currentIndex: 1
+                            Layout.alignment: Qt.AlignLeft
+                        }
+
+                        KaakaoLabel { 
+                            text: "Small Detail:" 
+                            Layout.alignment: Qt.AlignRight
+                        }
+                        KaakaoLabel {
+                            text: "This is a small label role"
+                            role: KaakaoLabel.Role.Small
+                            Layout.alignment: Qt.AlignLeft
+                        }
+                    }
+
+                    Item { Layout.preferredHeight: 40 } // Bottom Spacer
+                }
             }
 
-            KaakaoLabel { text: "Focused State:" }
-            Button {
-                text: "I am Focused"
-                focus: true
+            // 1: Inputs View
+            ScrollView {
+                id: inputsScroll
+                clip: true
+                contentWidth: availableWidth
+
+                ColumnLayout {
+                    width: inputsScroll.availableWidth
+                    spacing: 0
+
+                    Item { Layout.preferredHeight: 10 } // Matches Sidebar topMargin
+
+                    KaakaoLabel {
+                        text: "Form Controls"
+                        role: KaakaoLabel.Role.Header
+                        Layout.alignment: Qt.AlignHCenter
+                        Layout.bottomMargin: 32
+                    }
+
+                    GridLayout {
+                        columns: 2
+                        columnSpacing: 20
+                        rowSpacing: 16
+                        Layout.alignment: Qt.AlignHCenter
+
+                        KaakaoLabel { 
+                            text: "Text Input:" 
+                            Layout.alignment: Qt.AlignRight
+                        }
+                        KaakaoTextField {
+                            placeholderText: "Type something..."
+                            width: 150
+                            Layout.alignment: Qt.AlignLeft
+                        }
+
+                        KaakaoLabel { 
+                            text: "Checkboxes:" 
+                            Layout.alignment: Qt.AlignRight
+                        }
+                        RowLayout {
+                            spacing: 12
+                            Layout.alignment: Qt.AlignLeft
+                            KaakaoCheckBox { text: "Option A"; checked: true }
+                            KaakaoCheckBox { text: "Option B" }
+                        }
+
+                        KaakaoLabel { 
+                            text: "Radio Buttons:" 
+                            Layout.alignment: Qt.AlignRight
+                        }
+                        RowLayout {
+                            spacing: 12
+                            Layout.alignment: Qt.AlignLeft
+                            KaakaoRadioButton { text: "Choice 1"; checked: true }
+                            KaakaoRadioButton { text: "Choice 2" }
+                        }
+                    }
+
+                    Item { Layout.preferredHeight: 40 } // Bottom Spacer
+                }
             }
 
-            KaakaoLabel { text: "Text Input:" }
-            KaakaoTextField {
-                placeholderText: "Type something..."
-                width: 150
+            // 2: Project View
+            Item {
+                KaakaoLabel {
+                    text: "Project Resources"
+                    role: KaakaoLabel.Role.Header
+                    anchors.centerIn: parent
+                }
             }
 
-            KaakaoLabel { text: "Choice Controls:" }
-            Row {
-                spacing: 12
-                KaakaoCheckBox { text: "Option A"; checked: true }
-                KaakaoCheckBox { text: "Option B" }
+            // 3: Settings View
+            Item {
+                ColumnLayout {
+                    anchors.centerIn: parent
+                    spacing: 20
+                    KaakaoLabel {
+                        text: "Application Settings"
+                        role: KaakaoLabel.Role.Header
+                        Layout.alignment: Qt.AlignHCenter
+                    }
+                    Text {
+                        text: Theme.isDarkMode ? "Dark Mode Active" : "Light Mode Active"
+                        font: Theme.defaultFont
+                        color: Theme.primaryText
+                        opacity: 0.5
+                        Layout.alignment: Qt.AlignHCenter
+                    }
+                }
             }
-
-            KaakaoLabel { text: "Radio Group:" }
-            Row {
-                spacing: 12
-                KaakaoRadioButton { text: "Choice 1"; checked: true }
-                KaakaoRadioButton { text: "Choice 2" }
-            }
-
-            KaakaoLabel { text: "Segmented:" }
-            KaakaoSegmentedControl {
-                model: ["Grid", "List", "Tree"]
-                currentIndex: 1
-            }
-
-            KaakaoLabel { text: "Small Detail:" }
-            KaakaoLabel {
-                text: "This is a small label role"
-                role: KaakaoLabel.Role.Small
-            }
-        }
-
-        Text {
-            anchors.horizontalCenter: parent.horizontalCenter
-            text: Theme.isDarkMode ? "Dark Mode Active" : "Light Mode Active"
-            font: Theme.defaultFont
-            color: Theme.primaryText
-            opacity: 0.5
         }
     }
 }

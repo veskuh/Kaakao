@@ -19,6 +19,11 @@ TestCase {
         verify(Theme.toolButtonHovered !== undefined, "toolButtonHovered should be defined")
         verify(Theme.toolButtonPressed !== undefined, "toolButtonPressed should be defined")
         verify(Theme.toolButtonBorder !== undefined, "toolButtonBorder should be defined")
+
+        // Sidebar properties
+        verify(Theme.sidebarBackground !== undefined, "sidebarBackground should be defined")
+        verify(Theme.sidebarBorder !== undefined, "sidebarBorder should be defined")
+        verify(Theme.sidebarSectionText !== undefined, "sidebarSectionText should be defined")
     }
 
     function test_geometry() {

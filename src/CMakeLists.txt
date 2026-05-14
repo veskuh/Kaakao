@@ -18,4 +18,5 @@ qt_add_qml_module(Kaakao
         KaakaoSegmentedControl.qml
         KaakaoToolBar.qml
         KaakaoToolButton.qml
+        KaakaoSidebar.qml
 )
