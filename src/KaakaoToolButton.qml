@@ -21,6 +21,7 @@ import QtQuick.Controls.Basic
 ToolButton {
     id: control
 
+    property string iconEmoji: ""
     display: AbstractButton.TextUnderIcon
     spacing: 2
     
@@ -45,7 +46,16 @@ ToolButton {
             width: control.icon.width
             height: control.icon.height
             fillMode: Image.PreserveAspectFit
-            visible: control.icon.source.toString() !== "" || control.icon.name !== ""
+            visible: (control.icon.source.toString() !== "" || control.icon.name !== "") && control.iconEmoji === ""
+        }
+
+        Text {
+            id: emojiItem
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: control.iconEmoji
+            font.pixelSize: 20
+            visible: control.iconEmoji !== ""
+            renderType: Text.NativeRendering
         }
 
         Text {

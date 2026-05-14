@@ -20,18 +20,18 @@ KaakaoWindow {
             
             KaakaoToolButton {
                 text: "Back"
-                icon.name: "go-previous"
+                iconEmoji: "◀"
             }
             KaakaoToolButton {
                 text: "Forward"
-                icon.name: "go-next"
+                iconEmoji: "▶"
             }
             
             Item { Layout.preferredWidth: 8 } // Spacer
             
             KaakaoToolButton {
                 text: "Refresh"
-                icon.name: "view-refresh"
+                iconEmoji: "↻"
             }
             
             Item {
@@ -40,7 +40,7 @@ KaakaoWindow {
             
             KaakaoToolButton {
                 text: "Search"
-                icon.name: "edit-find"
+                iconEmoji: "🔍"
             }
         }
     }

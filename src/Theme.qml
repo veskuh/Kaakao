@@ -87,7 +87,10 @@ QtObject {
     readonly property color textFieldInnerShadow: isDarkMode ? Qt.rgba(0,0,0,0.5) : Qt.rgba(0,0,0,0.15)
 
     // ToolBar Colors
-    readonly property color toolbarBorder: isDarkMode ? "#000000" : "#C4C4C4"
+    readonly property color toolbarGradTop: isDarkMode ? "#3C3C3C" : "#F6F6F6"
+    readonly property color toolbarGradBottom: isDarkMode ? "#323232" : "#E8E8E8"
+    readonly property color toolbarBorder: isDarkMode ? "#000000" : "#B0B0B0"
+    readonly property color toolbarHighlight: isDarkMode ? Qt.rgba(1,1,1,0.05) : Qt.rgba(1,1,1,0.8)
     readonly property color toolButtonHovered: isDarkMode ? "#2A2A2A" : "#E6E6E6"
     readonly property color toolButtonPressed: isDarkMode ? "#3A3A3A" : "#D9D9D9"
     readonly property color toolButtonBorder: isDarkMode ? "#121212" : "#B0B0B0"

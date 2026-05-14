@@ -10,6 +10,15 @@ TestCase {
         verify(Theme.windowBackground !== undefined, "windowBackground should be defined")
         verify(Theme.contentBackground !== undefined, "contentBackground should be defined")
         verify(Theme.primaryText !== undefined, "primaryText should be defined")
+
+        // ToolBar properties
+        verify(Theme.toolbarGradTop !== undefined, "toolbarGradTop should be defined")
+        verify(Theme.toolbarGradBottom !== undefined, "toolbarGradBottom should be defined")
+        verify(Theme.toolbarBorder !== undefined, "toolbarBorder should be defined")
+        verify(Theme.toolbarHighlight !== undefined, "toolbarHighlight should be defined")
+        verify(Theme.toolButtonHovered !== undefined, "toolButtonHovered should be defined")
+        verify(Theme.toolButtonPressed !== undefined, "toolButtonPressed should be defined")
+        verify(Theme.toolButtonBorder !== undefined, "toolButtonBorder should be defined")
     }
 
     function test_geometry() {

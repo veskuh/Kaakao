@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls.Basic
+import Qt5Compat.GraphicalEffects
 
 /*!
     \qmltype KaakaoToolBar
@@ -25,8 +26,27 @@ ToolBar {
     implicitHeight: 54
     
     background: Rectangle {
-        color: Theme.windowBackground
+        LinearGradient {
+            anchors.fill: parent
+            start: Qt.point(0, 0)
+            end: Qt.point(0, height)
+            gradient: Gradient {
+                GradientStop { position: 0.0; color: Theme.toolbarGradTop }
+                GradientStop { position: 1.0; color: Theme.toolbarGradBottom }
+            }
+        }
         
+        // Top Highlight
+        Rectangle {
+            anchors {
+                left: parent.left
+                right: parent.right
+                top: parent.top
+            }
+            height: 1
+            color: Theme.toolbarHighlight
+        }
+
         // Structural Border
         Rectangle {
             anchors {

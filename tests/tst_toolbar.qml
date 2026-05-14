@@ -34,6 +34,38 @@ TestCase {
         compare(testToolButton.implicitHeight, 54, "ToolButton should match parent toolbar height")
     }
 
+    function test_toolbutton_emoji() {
+        testToolButton.iconEmoji = "🔍"
+        
+        // Find the emoji item. It's in the contentItem (Column)
+        let column = testToolButton.contentItem
+        let emojiItem = null
+        for (let i = 0; i < column.children.length; ++i) {
+            if (column.children[i].text === "🔍") {
+                emojiItem = column.children[i]
+                break
+            }
+        }
+        
+        verify(emojiItem !== null, "Emoji item should exist")
+        verify(emojiItem.visible, "Emoji item should be visible when iconEmoji is set")
+        
+        // Check that regular icon item is hidden
+        let iconItem = null
+        for (let i = 0; i < column.children.length; ++i) {
+            if (column.children[i].hasOwnProperty("source")) {
+                iconItem = column.children[i]
+                break
+            }
+        }
+        verify(iconItem !== null, "Icon item should exist")
+        verify(!iconItem.visible, "Regular icon item should be hidden when iconEmoji is set")
+
+        // Reset
+        testToolButton.iconEmoji = ""
+        verify(!emojiItem.visible, "Emoji item should be hidden when iconEmoji is empty")
+    }
+
     function test_toolbutton_states() {
         // Initial state
         compare(testToolButton.background.color, "#00000000", "Initial background should be transparent")
