@@ -21,4 +21,6 @@ qt_add_qml_module(Kaakao
         KaakaoSidebar.qml
         KaakaoTextArea.qml
         KaakaoComboBox.qml
+        KaakaoSlider.qml
+        KaakaoProgressBar.qml
 )

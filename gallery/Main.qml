@@ -150,6 +150,55 @@ KaakaoWindow {
                         }
 
                         KaakaoLabel { 
+                            text: "Slider Control:" 
+                            Layout.alignment: Qt.AlignRight
+                        }
+                        KaakaoSlider {
+                            value: 0.5
+                            Layout.alignment: Qt.AlignLeft
+                        }
+
+                        KaakaoLabel { 
+                            text: "Progress Bar:" 
+                            Layout.alignment: Qt.AlignRight
+                        }
+                        KaakaoProgressBar {
+                            id: galleryProgress
+                            value: 0.0
+                            Layout.alignment: Qt.AlignLeft
+                            
+                            SequentialAnimation {
+                                loops: Animation.Infinite
+                                running: true
+                                
+                                NumberAnimation {
+                                    target: galleryProgress
+                                    property: "value"
+                                    from: 0.0
+                                    to: 1.0
+                                    duration: 4000
+                                    easing.type: Easing.InOutQuad
+                                }
+                                PauseAnimation { duration: 2000 }
+                                PropertyAction {
+                                    target: galleryProgress
+                                    property: "value"
+                                    value: 0.0
+                                }
+                                PauseAnimation { duration: 500 } // Short pause before restarting
+                            }
+                        }
+
+                        KaakaoLabel { 
+                            text: "Indeterminate:" 
+                            Layout.alignment: Qt.AlignRight
+                        }
+                        KaakaoProgressBar {
+                            indeterminate: true
+                            Layout.alignment: Qt.AlignLeft
+                        }
+
+                        KaakaoLabel { 
                             text: "Small Detail:" 
                             Layout.alignment: Qt.AlignRight
                         }
