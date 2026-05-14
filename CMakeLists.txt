@@ -27,10 +27,10 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
 endif()
 
 # Documentation target
-set(QDOC_EXECUTABLE "/Users/vesku/Qt/6.8.0/macos/bin/qdoc")
-set(QHELPGEN_EXECUTABLE "/Users/vesku/Qt/6.8.0/macos/libexec/qhelpgenerator")
+find_program(QDOC_EXECUTABLE qdoc)
+find_program(QHELPGEN_EXECUTABLE qhelpgenerator)
 
-if(EXISTS ${QDOC_EXECUTABLE} AND EXISTS ${QHELPGEN_EXECUTABLE})
+if(QDOC_EXECUTABLE AND QHELPGEN_EXECUTABLE)
     add_custom_target(docs
         COMMAND ${CMAKE_COMMAND} -E rm -rf ${CMAKE_CURRENT_SOURCE_DIR}/docs/html
         COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_SOURCE_DIR}/docs/html
