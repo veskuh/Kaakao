@@ -19,7 +19,7 @@ Kaakao is a desktop-first component library targeting the **Late-Classical macOS
     - **Corner Radius**: 4px (Standard), 3px (Small/Segmented), 8-10px (Windows/Panels/Dialogs).
     - **Borders**: Always 1px solid border to define depth.
     - **Gradients**: Use subtle vertical linear gradients (Top-to-Bottom) for buttons and surfaces.
-    - **Focus Rings**: 3px outline using Primary Accent color at 0.4 opacity.
+    - **Focus Rings**: Use `KaakaoFocusRing` for consistent 3px outlines using Primary Accent color at 0.4 opacity.
 - **Palette**:
     - **Primary Accent**: Light `#007AFF`, Dark `#0A84FF`.
     - **Window Background**: Light `#ECECEC`, Dark `#1E1E1E`.
@@ -37,6 +37,11 @@ Kaakao is a desktop-first component library targeting the **Late-Classical macOS
 
 ## Workflow
 1. **Implementation**: Create reusable primitives in `src/` or app-specific views in `gallery/`.
+2. **Gallery**: Demonstrate components in `gallery/Main.qml`. Import `Gallery` if using app-specific views.
+3. **Tests**: Create a test in `tests/` using the headless static pattern.
+4. **Build & Verify**: Ensure `ComponentGallery` runs and `ctest --output-on-failure` passes.
+5. **Singleton Registration**: Register singletons in `src/CMakeLists.txt` using `set_source_files_properties(... PROPERTIES QT_QML_SINGLETON_TYPE TRUE)` *before* the `qt_add_qml_module` call.
+ primitives in `src/` or app-specific views in `gallery/`.
 2. **Gallery**: Demonstrate components in `gallery/Main.qml`. Import `Gallery` if using app-specific views.
 3. **Tests**: Create a test in `tests/` using the headless static pattern.
 4. **Build & Verify**: Ensure `ComponentGallery` runs and `ctest --output-on-failure` passes.
