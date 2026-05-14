@@ -200,6 +200,26 @@ KaakaoWindow {
                         }
 
                         KaakaoLabel { 
+                            text: "Text Area:" 
+                            Layout.alignment: Qt.AlignRight | Qt.AlignTop
+                        }
+                        KaakaoTextArea {
+                            placeholderText: "Multi-line text entry..."
+                            Layout.preferredWidth: 200
+                            Layout.preferredHeight: 100
+                            Layout.alignment: Qt.AlignLeft
+                        }
+
+                        KaakaoLabel { 
+                            text: "Selection (PopUp):" 
+                            Layout.alignment: Qt.AlignRight
+                        }
+                        KaakaoComboBox {
+                            model: ["Option 1", "Option 2", "Option 3", "Option 4"]
+                            Layout.alignment: Qt.AlignLeft
+                        }
+
+                        KaakaoLabel { 
                             text: "Checkboxes:" 
                             Layout.alignment: Qt.AlignRight
                         }

@@ -19,4 +19,6 @@ qt_add_qml_module(Kaakao
         KaakaoToolBar.qml
         KaakaoToolButton.qml
         KaakaoSidebar.qml
+        KaakaoTextArea.qml
+        KaakaoComboBox.qml
 )
