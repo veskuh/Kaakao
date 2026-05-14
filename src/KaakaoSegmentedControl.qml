@@ -37,7 +37,7 @@ Control {
             
             x: currentItem ? currentItem.x + 1 : 1
             y: 1
-            width: currentItem ? (control.currentIndex < repeater.count - 1 ? currentItem.width - 1 : currentItem.width - 2) : 0
+            width: currentItem ? currentItem.width - 2 : 0
             height: parent.height - 2
             radius: Theme.radiusSmall - 1
             z: 0
