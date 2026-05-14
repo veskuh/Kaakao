@@ -8,4 +8,6 @@ qt_add_qml_module(Kaakao
     QML_FILES
         Button.qml
         Theme.qml
+        KaakaoWindow.qml
+        KaakaoLabel.qml
 )

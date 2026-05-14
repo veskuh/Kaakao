@@ -1,37 +1,54 @@
 import QtQuick
-import QtQuick.Window
 import Kaakao
 
-Window {
+KaakaoWindow {
     width: 640
     height: 480
-    visible: true
     title: qsTr("Kaakao Component Gallery")
-    color: Theme.windowBackground
 
     Column {
         anchors.centerIn: parent
-        spacing: 20
+        spacing: 24
 
-        Text {
+        Column {
             anchors.horizontalCenter: parent.horizontalCenter
-            text: "Classical macOS Aesthetic"
-            font.pixelSize: 24
-            color: Theme.primaryText
-        }
-
-        Row {
-            spacing: 10
-            anchors.horizontalCenter: parent.horizontalCenter
+            spacing: 8
             
-            Button {
-                text: "Standard Button"
-                onClicked: console.log("Standard clicked")
+            KaakaoLabel {
+                text: "Kaakao Component Gallery"
+                role: KaakaoLabel.Role.Header
+                anchors.horizontalCenter: parent.horizontalCenter
             }
 
+            KaakaoLabel {
+                text: "Classical macOS (Yosemite-Catalina) Aesthetic"
+                role: KaakaoLabel.Role.Secondary
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+        }
+
+        Grid {
+            columns: 2
+            spacing: 20
+            anchors.horizontalCenter: parent.horizontalCenter
+            verticalItemAlignment: Grid.AlignVCenter
+
+            KaakaoLabel { text: "Standard Button:" }
             Button {
-                text: "Focused Button"
+                text: "Push Me"
+                onClicked: console.log("Standard button clicked")
+            }
+
+            KaakaoLabel { text: "Focused State:" }
+            Button {
+                text: "I am Focused"
                 focus: true
+            }
+
+            KaakaoLabel { text: "Small Detail:" }
+            KaakaoLabel {
+                text: "This is a small label role"
+                role: KaakaoLabel.Role.Small
             }
         }
 
@@ -40,7 +57,7 @@ Window {
             text: Theme.isDarkMode ? "Dark Mode Active" : "Light Mode Active"
             font: Theme.defaultFont
             color: Theme.primaryText
-            opacity: 0.7
+            opacity: 0.5
         }
     }
 }

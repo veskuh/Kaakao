@@ -7,16 +7,16 @@ Kaakao is a desktop-first component library targeting the **Late-Classical macOS
 
 ## Architectural Constraints
 - **Pure QML**: Avoid C++ logic in `src/`. Use `QtQuick.Controls.Basic` as the base for all components to ensure standard desktop behavior (focus, accessibility).
-- **Modern Qt 6**: Use `qt_add_qml_module`. For effects like gradients and shadows, use `Qt5Compat.GraphicalEffects` (ensure it is available) or modern Qt Quick MultiEffect where appropriate.
-- **Submodule Support**: Maintain the conditional `gallery/` build in the root `CMakeLists.txt`.
+- **Modern Qt 6**: Use `qt_add_qml_module`. For effects like gradients and shadows, use `Qt5Compat.GraphicalEffects`.
+- **Submodule Support**: Maintain the conditional `gallery/` and `tests/` build in the root `CMakeLists.txt`.
 
 ## Design System (Strict Adherence Required)
-- **Theme Singleton**: All components MUST use a centralized reactive `Theme.qml` (or `Theme` singleton). It must support dynamic **Light/Dark mode** switching.
+- **Theme Singleton**: All components MUST use the centralized reactive `Theme` singleton (`Theme.qml`). It supports dynamic **Light/Dark mode** switching via `Qt.styleHints.colorScheme`.
 - **Aesthetic**:
-    - **Corner Radius**: 4px (Standard), 8-10px (Windows/Panels).
+    - **Corner Radius**: 4px (Standard), 3px (Small/Segmented), 8-10px (Windows/Panels).
     - **Borders**: Always 1px solid border to define depth.
     - **Gradients**: Use subtle vertical linear gradients (Top-to-Bottom) for buttons and surfaces.
-    - **Focus Rings**: 3px outline using Primary Accent color at 0.4 opacity when `activeFocus` is true.
+    - **Focus Rings**: 3px outline using Primary Accent color at 0.4 opacity.
 - **Palette**:
     - **Primary Accent**: Light `#007AFF`, Dark `#0A84FF`.
     - **Window Background**: Light `#ECECEC`, Dark `#1E1E1E`.
@@ -25,9 +25,16 @@ Kaakao is a desktop-first component library targeting the **Late-Classical macOS
 ## Component Implementation Rules
 - **Layering**: Build depth using layered QML primitives (Rectangles, Gradients, Inner Highlights).
 - **Sunken Inputs**: `TextField` and `TextArea` must look "sunken" with subtle inner top shadows.
-- **Typography**: Target 13px (MacOS `.AppleSystemUIFont`) or visually equivalent 10pt/11pt sans-serif on other platforms.
+- **Typography**: Target 13px (MacOS `.AppleSystemUIFont`) or visually equivalent 10pt/11pt sans-serif on other platforms via `Theme.defaultFont`.
+
+## Testing Strategy (Mandatory)
+- **Headless Tests**: Tests in `tests/` MUST run headlessly. Use static component instantiation inside `TestCase` to avoid window activation issues (`visible: false`).
+- **Property Verification**: Focus on verifying properties, theme linkage, and state transitions (e.g., using the `down` property for buttons) rather than mouse interaction.
+- **Automated Verification**: Every new component MUST have a corresponding `tst_<name>.qml` test case.
 
 ## Workflow
-- **Verification**: Demonstrate new components in `gallery/Main.qml`.
-- **Build**: Ensure the `ComponentGallery` target builds and runs.
-- **Singleton Registration**: Register singletons (like `Theme.qml`) using `set_source_files_properties(... PROPERTIES QT_QML_SINGLETON_TYPE TRUE)` *before* the `qt_add_qml_module` call.
+1. **Implementation**: Create/update the component in `src/`. Use `Theme` tokens strictly.
+2. **Gallery**: Add a demonstration of the component to `gallery/Main.qml`.
+3. **Tests**: Create/update a test in `tests/` using the headless static pattern.
+4. **Build & Verify**: Ensure `ComponentGallery` runs and `ctest --output-on-failure` passes.
+5. **Singleton Registration**: Register singletons in `src/CMakeLists.txt` using `set_source_files_properties(... PROPERTIES QT_QML_SINGLETON_TYPE TRUE)` *before* the `qt_add_qml_module` call.
