@@ -13,10 +13,25 @@ QtObject {
     id: theme
 
     // Mode detection
-    /*! \qmlproperty bool Theme::isDarkMode
-        True if the system is currently using a dark color scheme.
+    enum ThemeMode {
+        System = 0,
+        Light = 1,
+        Dark = 2
+    }
+
+    /*! \qmlproperty int Theme::themeMode
+        The current theme mode. Defaults to System (0).
     */
-    property bool isDarkMode: Qt.styleHints.colorScheme === Qt.ColorScheme.Dark
+    property int themeMode: 0
+
+    /*! \qmlproperty bool Theme::isDarkMode
+        True if the system is currently using a dark color scheme, or if explicitly set to Dark.
+    */
+    readonly property bool isDarkMode: {
+        if (themeMode === 2 /* Dark */) return true;
+        if (themeMode === 1 /* Light */) return false;
+        return Qt.styleHints.colorScheme === Qt.ColorScheme.Dark;
+    }
 
     // Base Colors
     /*! \qmlproperty color Theme::primaryAccent

@@ -33,8 +33,15 @@ Control {
         // Selection Indicator (Sliding)
         Rectangle {
             id: selectionIndicator
-            property Item currentItem: repeater.itemAt(control.currentIndex)
+            // Bind to repeater.count to ensure it re-evaluates when items are created
+            property Item currentItem: {
+                if (repeater.count > 0 && control.currentIndex >= 0 && control.currentIndex < repeater.count) {
+                    return repeater.itemAt(control.currentIndex)
+                }
+                return null
+            }
             
+            visible: currentItem !== null
             x: currentItem ? currentItem.x + (control.currentIndex === 0 ? 1 : 0) : 0
             y: 1
             width: currentItem ? currentItem.width - (control.currentIndex === 0 ? 2 : 1) : 0

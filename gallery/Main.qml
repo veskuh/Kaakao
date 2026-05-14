@@ -308,12 +308,44 @@ KaakaoWindow {
             Item {
                 ColumnLayout {
                     anchors.centerIn: parent
-                    spacing: 20
+                    spacing: 32
+                    
                     KaakaoLabel {
                         text: "Application Settings"
                         role: KaakaoLabel.Role.Header
                         Layout.alignment: Qt.AlignHCenter
                     }
+
+                    ColumnLayout {
+                        spacing: 12
+                        Layout.alignment: Qt.AlignHCenter
+                        
+                        KaakaoLabel {
+                            text: "Appearance"
+                            Layout.alignment: Qt.AlignHCenter
+                        }
+                        
+                        KaakaoSegmentedControl {
+                            id: themeSelector
+                            model: ["System", "Light", "Dark"]
+                            currentIndex: Theme.themeMode
+                            Layout.alignment: Qt.AlignHCenter
+                            onCurrentIndexChanged: {
+                                if (Theme.themeMode !== currentIndex) {
+                                    Theme.themeMode = currentIndex
+                                }
+                            }
+                        }
+                    }
+
+                    Rectangle {
+                        Layout.preferredWidth: 200
+                        Layout.preferredHeight: 1
+                        color: Theme.sidebarBorder
+                        opacity: 0.3
+                        Layout.alignment: Qt.AlignHCenter
+                    }
+
                     Text {
                         text: Theme.isDarkMode ? "Dark Mode Active" : "Light Mode Active"
                         font: Theme.defaultFont
