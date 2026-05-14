@@ -10,4 +10,5 @@ qt_add_qml_module(Kaakao
         Theme.qml
         KaakaoWindow.qml
         KaakaoLabel.qml
+        KaakaoDialog.qml
 )

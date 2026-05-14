@@ -1,10 +1,32 @@
 import QtQuick
+import QtQuick.Controls.Basic
 import Kaakao
+import Gallery
 
 KaakaoWindow {
+    id: root
     width: 640
     height: 480
+    visible: true
     title: qsTr("Kaakao Component Gallery")
+
+    menuBar: MenuBar {
+        Menu {
+            title: qsTr("Help")
+            MenuItem {
+                text: qsTr("About Kaakao...")
+                onTriggered: aboutWindow.show()
+            }
+        }
+    }
+
+    AboutWindow {
+        id: aboutWindow
+        appName: "Kaakao Gallery"
+        version: "0.1.0"
+        description: "A Classical macOS aesthetic library for modern Qt Quick applications. Designed to feel tangible and refined."
+        copyright: "© 2026 Kaakao Contributors"
+    }
 
     Column {
         anchors.centerIn: parent
