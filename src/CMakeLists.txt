@@ -26,3 +26,5 @@ qt_add_qml_module(Kaakao
         KaakaoSearchField.qml
         KaakaoDisclosureTriangle.qml
 )
+
+target_link_libraries(Kaakao PRIVATE Qt6::Core5Compat Qt6::ShaderTools)

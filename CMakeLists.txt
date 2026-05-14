@@ -11,7 +11,7 @@ set(CMAKE_AUTOUIC ON)
 
 set(QT_QML_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/qml)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick QuickControls2 Core5Compat Test QuickTest)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick QuickControls2 Core5Compat Test QuickTest ShaderTools)
 
 if(POLICY QTP0001)
     qt_policy(SET QTP0001 NEW)
