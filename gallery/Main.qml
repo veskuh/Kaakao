@@ -336,10 +336,53 @@ KaakaoWindow {
 
             // 2: Project View
             Item {
-                KaakaoLabel {
-                    text: "Project Resources"
-                    role: KaakaoLabel.Role.Header
-                    anchors.centerIn: parent
+                ColumnLayout {
+                    anchors.fill: parent
+                    anchors.margins: 20
+                    spacing: 16
+
+                    KaakaoLabel {
+                        text: "Project Resources"
+                        role: KaakaoLabel.Role.Header
+                        Layout.alignment: Qt.AlignLeft
+                    }
+
+                    KaakaoTableView {
+                        id: projectList
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        
+                        columns: [
+                            KaakaoTableColumn { title: "Name"; role: "name"; width: 200 },
+                            KaakaoTableColumn { title: "Size"; role: "size"; width: 80 },
+                            KaakaoTableColumn { title: "Kind"; role: "type"; width: 120 }
+                        ]
+
+                        property var projectData: [
+                            { name: "CMakeLists.txt", size: "2 KB", type: "Configuration" },
+                            { name: "README.md", size: "4 KB", type: "Markdown" },
+                            { name: "src/Button.qml", size: "3 KB", type: "QML Source" },
+                            { name: "src/Theme.qml", size: "5 KB", type: "QML Source" },
+                            { name: "tests/tst_button.qml", size: "2 KB", type: "QML Test" },
+                            { name: "assets/logo.png", size: "12 KB", type: "Image" },
+                            { name: "docs/index.html", size: "8 KB", type: "HTML" }
+                        ]
+
+                        model: projectData
+
+                        onSortRequested: (role, order) => {
+                            console.log("Sort requested for", role, "order", order)
+                            let data = projectData.slice()
+                            data.sort((a, b) => {
+                                let valA = a[role]
+                                let valB = b[role]
+                                if (valA < valB) return order === Qt.AscendingOrder ? -1 : 1
+                                if (valA > valB) return order === Qt.AscendingOrder ? 1 : -1
+                                return 0
+                            })
+                            projectData = data
+                        }
+                    }
                 }
             }
 

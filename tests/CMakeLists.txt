@@ -1,5 +1,5 @@
 # Copy QML files to build directory for execution
-file(COPY tst_theme.qml tst_button.qml tst_window.qml tst_label.qml tst_dialog.qml tst_about.qml tst_textfield.qml tst_controls.qml tst_toolbar.qml tst_sidebar.qml tst_indicators.qml tst_searchfield.qml tst_disclosure.qml DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
+file(COPY tst_theme.qml tst_button.qml tst_window.qml tst_label.qml tst_dialog.qml tst_about.qml tst_textfield.qml tst_controls.qml tst_toolbar.qml tst_sidebar.qml tst_indicators.qml tst_searchfield.qml tst_disclosure.qml tst_listview.qml tst_tableview.qml DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
 
 # Theme Test
 qt_add_executable(tst_theme main.cpp)
@@ -92,3 +92,17 @@ target_link_libraries(tst_disclosure PRIVATE Qt6::Core Qt6::Gui Qt6::Qml Qt6::Qu
 target_compile_definitions(tst_disclosure PRIVATE QUICK_TEST_SOURCE_DIR="${CMAKE_CURRENT_BINARY_DIR}")
 add_test(NAME tst_disclosure COMMAND tst_disclosure -input tst_disclosure.qml)
 set_tests_properties(tst_disclosure PROPERTIES ENVIRONMENT "QML_IMPORT_PATH=${CMAKE_BINARY_DIR}/qml")
+
+# ListView Test
+qt_add_executable(tst_listview main.cpp)
+target_link_libraries(tst_listview PRIVATE Qt6::Core Qt6::Gui Qt6::Qml Qt6::Quick Qt6::Test Qt6::QuickTest Kaakao)
+target_compile_definitions(tst_listview PRIVATE QUICK_TEST_SOURCE_DIR="${CMAKE_CURRENT_BINARY_DIR}")
+add_test(NAME tst_listview COMMAND tst_listview -input tst_listview.qml)
+set_tests_properties(tst_listview PROPERTIES ENVIRONMENT "QML_IMPORT_PATH=${CMAKE_BINARY_DIR}/qml")
+
+# TableView Test
+qt_add_executable(tst_tableview main.cpp)
+target_link_libraries(tst_tableview PRIVATE Qt6::Core Qt6::Gui Qt6::Qml Qt6::Quick Qt6::Test Qt6::QuickTest Kaakao)
+target_compile_definitions(tst_tableview PRIVATE QUICK_TEST_SOURCE_DIR="${CMAKE_CURRENT_BINARY_DIR}")
+add_test(NAME tst_tableview COMMAND tst_tableview -input tst_tableview.qml)
+set_tests_properties(tst_tableview PROPERTIES ENVIRONMENT "QML_IMPORT_PATH=${CMAKE_BINARY_DIR}/qml")

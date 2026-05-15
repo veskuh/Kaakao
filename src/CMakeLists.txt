@@ -25,6 +25,11 @@ qt_add_qml_module(Kaakao
         KaakaoProgressBar.qml
         KaakaoSearchField.qml
         KaakaoDisclosureTriangle.qml
+        KaakaoListView.qml
+        KaakaoListDelegate.qml
+        KaakaoTableView.qml
+        KaakaoTableRowDelegate.qml
+        KaakaoTableColumn.qml
 )
 
 target_link_libraries(Kaakao PRIVATE Qt6::Core5Compat Qt6::ShaderTools)
