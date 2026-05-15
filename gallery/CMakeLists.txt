@@ -9,11 +9,11 @@ qt_add_qml_module(GalleryLib
         AboutWindow.qml
 )
 
-qt_add_executable(ComponentGallery
+qt_add_executable(KaakaoGallery
     main.cpp
 )
 
-qt_add_qml_module(ComponentGallery
+qt_add_qml_module(KaakaoGallery
     URI GalleryApp
     VERSION 1.0
     RESOURCE_PREFIX "/qt/qml"
@@ -21,7 +21,7 @@ qt_add_qml_module(ComponentGallery
         Main.qml
 )
 
-target_link_libraries(ComponentGallery PRIVATE
+target_link_libraries(KaakaoGallery PRIVATE
     Qt6::Core
     Qt6::Gui
     Qt6::Qml

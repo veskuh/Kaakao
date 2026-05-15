@@ -6,7 +6,7 @@ qt_add_qml_module(Kaakao
     RESOURCE_PREFIX "/qt/qml"
     DEPENDENCIES Qt5Compat.GraphicalEffects
     QML_FILES
-        Button.qml
+        KaakaoButton.qml
         Theme.qml
         KaakaoWindow.qml
         KaakaoLabel.qml

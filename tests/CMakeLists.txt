@@ -1,5 +1,5 @@
 # Copy QML files to build directory for execution
-file(COPY tst_theme.qml tst_button.qml tst_window.qml tst_label.qml tst_dialog.qml tst_about.qml tst_textfield.qml tst_controls.qml tst_toolbar.qml tst_sidebar.qml tst_indicators.qml tst_searchfield.qml tst_disclosure.qml tst_listview.qml tst_tableview.qml DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
+file(COPY tst_theme.qml tst_kaakaobutton.qml tst_window.qml tst_label.qml tst_dialog.qml tst_about.qml tst_textfield.qml tst_controls.qml tst_toolbar.qml tst_sidebar.qml tst_indicators.qml tst_searchfield.qml tst_disclosure.qml tst_listview.qml tst_tableview.qml DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
 
 # Theme Test
 qt_add_executable(tst_theme main.cpp)
@@ -9,11 +9,11 @@ add_test(NAME tst_theme COMMAND tst_theme -input tst_theme.qml)
 set_tests_properties(tst_theme PROPERTIES ENVIRONMENT "QML_IMPORT_PATH=${CMAKE_BINARY_DIR}/qml")
 
 # Button Test
-qt_add_executable(tst_button main.cpp)
-target_link_libraries(tst_button PRIVATE Qt6::Core Qt6::Gui Qt6::Qml Qt6::Quick Qt6::Test Qt6::QuickTest Kaakao)
-target_compile_definitions(tst_button PRIVATE QUICK_TEST_SOURCE_DIR="${CMAKE_CURRENT_BINARY_DIR}")
-add_test(NAME tst_button COMMAND tst_button -input tst_button.qml)
-set_tests_properties(tst_button PROPERTIES ENVIRONMENT "QML_IMPORT_PATH=${CMAKE_BINARY_DIR}/qml")
+qt_add_executable(tst_kaakaobutton main.cpp)
+target_link_libraries(tst_kaakaobutton PRIVATE Qt6::Core Qt6::Gui Qt6::Qml Qt6::Quick Qt6::Test Qt6::QuickTest Kaakao)
+target_compile_definitions(tst_kaakaobutton PRIVATE QUICK_TEST_SOURCE_DIR="${CMAKE_CURRENT_BINARY_DIR}")
+add_test(NAME tst_kaakaobutton COMMAND tst_kaakaobutton -input tst_kaakaobutton.qml)
+set_tests_properties(tst_kaakaobutton PROPERTIES ENVIRONMENT "QML_IMPORT_PATH=${CMAKE_BINARY_DIR}/qml")
 
 # Window Test
 qt_add_executable(tst_window main.cpp)

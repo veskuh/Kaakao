@@ -85,7 +85,7 @@ KaakaoWindow {
             anchors.horizontalCenter: parent.horizontalCenter
         }
 
-        Button {
+        KaakaoButton {
             text: qsTr("Close")
             anchors.horizontalCenter: parent.horizontalCenter
             onClicked: aboutWindow.close()

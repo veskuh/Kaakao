@@ -31,7 +31,7 @@
     import Kaakao 1.0
     \endcode
 
-    Then you can use components like \l Button or \l KaakaoTextField:
+    Then you can use components like \l KaakaoButton or \l KaakaoTextField:
 
     \code
     KaakaoWindow {
@@ -39,7 +39,7 @@
         width: 400
         height: 300
 
-        Button {
+        KaakaoButton {
             text: "Push Me"
             anchors.centerIn: parent
         }
@@ -50,7 +50,7 @@
 
     \list
         \li \l Theme - The central styling singleton.
-        \li \l Button - A stylized push-button.
+        \li \l KaakaoButton - A stylized push-button.
         \li \l KaakaoLabel - A text label with semantic roles.
         \li \l KaakaoTextField - A "sunken well" text input.
         \li \l KaakaoWindow - The root application container.

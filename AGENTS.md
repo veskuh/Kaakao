@@ -7,7 +7,7 @@ Kaakao is a desktop-first component library targeting the **Late-Classical macOS
 
 ## Architectural Constraints
 - **Module Separation**: 
-    - `src/`: Contains the `Kaakao` module. Strictly for reusable library primitives (e.g., `Button`, `KaakaoLabel`, `KaakaoDialog`). **No application-specific logic allowed here.**
+    - `src/`: Contains the `Kaakao` module. Strictly for reusable library primitives (e.g., `KaakaoButton`, `KaakaoLabel`, `KaakaoDialog`). **No application-specific logic allowed here.**
     - `gallery/`: Contains the `Gallery` (library) and `GalleryApp` (executable) modules. For demonstrator-specific views (e.g., `AboutWindow`).
 - **Pure QML**: Avoid C++ logic in `src/`. Use `QtQuick.Controls.Basic` as the base for all components.
 - **Modern Qt 6**: Use `qt_add_qml_module`. For effects, use `Qt5Compat.GraphicalEffects`.
@@ -39,10 +39,5 @@ Kaakao is a desktop-first component library targeting the **Late-Classical macOS
 1. **Implementation**: Create reusable primitives in `src/` or app-specific views in `gallery/`.
 2. **Gallery**: Demonstrate components in `gallery/Main.qml`. Import `Gallery` if using app-specific views.
 3. **Tests**: Create a test in `tests/` using the headless static pattern.
-4. **Build & Verify**: Ensure `ComponentGallery` runs and `ctest --output-on-failure` passes.
-5. **Singleton Registration**: Register singletons in `src/CMakeLists.txt` using `set_source_files_properties(... PROPERTIES QT_QML_SINGLETON_TYPE TRUE)` *before* the `qt_add_qml_module` call.
- primitives in `src/` or app-specific views in `gallery/`.
-2. **Gallery**: Demonstrate components in `gallery/Main.qml`. Import `Gallery` if using app-specific views.
-3. **Tests**: Create a test in `tests/` using the headless static pattern.
-4. **Build & Verify**: Ensure `ComponentGallery` runs and `ctest --output-on-failure` passes.
+4. **Build & Verify**: Ensure `KaakaoGallery` runs and `ctest --output-on-failure` passes.
 5. **Singleton Registration**: Register singletons in `src/CMakeLists.txt` using `set_source_files_properties(... PROPERTIES QT_QML_SINGLETON_TYPE TRUE)` *before* the `qt_add_qml_module` call.

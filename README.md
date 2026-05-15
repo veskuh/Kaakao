@@ -39,7 +39,7 @@ The project uses QML primitives and standard gradients to approximate the depth 
 mkdir build && cd build
 cmake ..
 make
-./gallery/ComponentGallery
+./gallery/KaakaoGallery
 ```
 
 ### Running Tests

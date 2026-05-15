@@ -33,7 +33,7 @@ qhp.Kaakao.subprojects.manual.indexTitle = Kaakao Overview
 qhp.Kaakao.subprojects.manual.selectors = qmlclass qmlproperty qmlmethod qmlsignal qmlenumeration
 
 # Input files
-sources = ../src/Button.qml \
+sources = ../src/KaakaoButton.qml \
           ../src/KaakaoCheckBox.qml \
           ../src/KaakaoDialog.qml \
           ../src/KaakaoFocusRing.qml \

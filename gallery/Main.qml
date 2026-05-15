@@ -124,7 +124,7 @@ KaakaoWindow {
                             text: "Standard Button:" 
                             Layout.alignment: Qt.AlignRight
                         }
-                        Button {
+                        KaakaoButton {
                             text: "Push Me"
                             Layout.alignment: Qt.AlignLeft
                             onClicked: console.log("Standard button clicked")
@@ -134,7 +134,7 @@ KaakaoWindow {
                             text: "Focused State:" 
                             Layout.alignment: Qt.AlignRight
                         }
-                        Button {
+                        KaakaoButton {
                             text: "I am Focused"
                             focus: true
                             Layout.alignment: Qt.AlignLeft
@@ -361,9 +361,9 @@ KaakaoWindow {
                         property var projectData: [
                             { name: "CMakeLists.txt", size: "2 KB", type: "Configuration" },
                             { name: "README.md", size: "4 KB", type: "Markdown" },
-                            { name: "src/Button.qml", size: "3 KB", type: "QML Source" },
+                            { name: "src/KaakaoButton.qml", size: "3 KB", type: "QML Source" },
                             { name: "src/Theme.qml", size: "5 KB", type: "QML Source" },
-                            { name: "tests/tst_button.qml", size: "2 KB", type: "QML Test" },
+                            { name: "tests/tst_kaakaobutton.qml", size: "2 KB", type: "QML Test" },
                             { name: "assets/logo.png", size: "12 KB", type: "Image" },
                             { name: "docs/index.html", size: "8 KB", type: "HTML" }
                         ]

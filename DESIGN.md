@@ -116,12 +116,12 @@ Inputs must look physically "sunken" into the layout.
 ### Example QML Structure pattern for Agent Reference:
 
 ```qml
-// MacButton.qml
+// KaakaoButton.qml
 import QtQuick
 import QtQuick.Controls.Basic
 import Qt5Compat.GraphicalEffects // Assuming Qt6
 
-Button {
+KaakaoButton {
     id: control
     implicitWidth: Math.max(80, contentItem.implicitWidth + 24)
     implicitHeight: 22 // Classic compact macOS height
