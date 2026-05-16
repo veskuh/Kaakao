@@ -59,6 +59,27 @@ QtObject {
     */
     readonly property real disabledOpacity: 0.4
 
+    // Semantic Colors
+    /*! \qmlproperty color Theme::colorSuccess
+        Standard color for successful operations and positive status.
+    */
+    readonly property color colorSuccess: "#28c840"
+
+    /*! \qmlproperty color Theme::colorError
+        Standard color for failed operations and critical errors.
+    */
+    readonly property color colorError: "#ff5f57"
+
+    /*! \qmlproperty color Theme::colorWarning
+        Standard color for warnings and attention-required states.
+    */
+    readonly property color colorWarning: "#ff9500"
+
+    /*! \qmlproperty color Theme::colorInfo
+        Standard color for informational messages.
+    */
+    readonly property color colorInfo: primaryAccent
+
     // Button Colors (Classical macOS Yosemite-Catalina)
     /*! \qmlproperty color Theme::buttonGradTop
         The top color of the standard button gradient.
