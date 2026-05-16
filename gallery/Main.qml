@@ -74,13 +74,15 @@ KaakaoWindow {
         copyright: "© 2026 Kaakao Contributors"
     }
 
-    RowLayout {
+    KaakaoSplitView {
         anchors.fill: parent
-        spacing: 0
+        orientation: Qt.Horizontal
 
         KaakaoSidebar {
             id: sidebar
-            Layout.fillHeight: true
+            SplitView.preferredWidth: 200
+            SplitView.minimumWidth: 150
+            SplitView.maximumWidth: 350
             model: ListModel {
                 ListElement { name: "Components"; icon: "🧩"; category: "Library" }
                 ListElement { name: "Inputs"; icon: "⌨️"; category: "Library" }
@@ -92,8 +94,7 @@ KaakaoWindow {
 
         StackLayout {
             id: contentStack
-            Layout.fillWidth: true
-            Layout.fillHeight: true
+            SplitView.fillWidth: true
             currentIndex: sidebar.currentIndex
 
             // 0: Components View
@@ -523,6 +524,61 @@ KaakaoWindow {
                             subtitle: model.category
                             secondaryText: model.size
                             width: ListView.view.width
+                        }
+                    }
+
+                    Item { Layout.preferredHeight: 32 }
+
+                    KaakaoLabel {
+                        text: "Grid View"
+                        role: KaakaoLabel.Role.Secondary
+                        Layout.alignment: Qt.AlignHCenter
+                    }
+
+                    KaakaoGridView {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 300
+                        cellWidth: 120
+                        cellHeight: 140
+                        
+                        model: ListModel {
+                            ListElement { name: "Nature"; color: "#28C840"; symbol: "🌲" }
+                            ListElement { name: "Urban"; color: "#FF9500"; symbol: "🏙️" }
+                            ListElement { name: "Abstract"; color: "#007AFF"; symbol: "🌀" }
+                            ListElement { name: "Portrait"; color: "#FF5F57"; symbol: "👤" }
+                            ListElement { name: "Macro"; color: "#A2845E"; symbol: "🔍" }
+                            ListElement { name: "Night"; color: "#5856D6"; symbol: "🌙" }
+                        }
+                        
+                        delegate: KaakaoGridDelegate {
+                            width: 120
+                            height: 140
+                            
+                            ColumnLayout {
+                                anchors.fill: parent
+                                anchors.margins: 10
+                                spacing: 8
+                                
+                                Rectangle {
+                                    Layout.fillWidth: true
+                                    Layout.fillHeight: true
+                                    radius: Theme.radiusSmall
+                                    color: model.color
+                                    
+                                    KaakaoLabel {
+                                        anchors.centerIn: parent
+                                        text: model.symbol
+                                        font.pixelSize: 32
+                                    }
+                                }
+                                
+                                KaakaoLabel {
+                                    text: model.name
+                                    Layout.alignment: Qt.AlignHCenter
+                                    role: KaakaoLabel.Role.Small
+                                    color: isSelected ? "white" : Theme.primaryText
+                                }
+                            }
                         }
                     }
                 }

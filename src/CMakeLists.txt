@@ -38,6 +38,9 @@ qt_add_qml_module(Kaakao
         KaakaoStatusIndicator.qml
         KaakaoPathControl.qml
         KaakaoActivityOverlay.qml
+        KaakaoSplitView.qml
+        KaakaoGridView.qml
+        KaakaoGridDelegate.qml
 )
 
 target_link_libraries(Kaakao PRIVATE Qt6::Core5Compat Qt6::ShaderTools)
