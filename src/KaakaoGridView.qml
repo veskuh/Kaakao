@@ -38,6 +38,12 @@ ScrollView {
     */
     property alias cellHeight: gridView.cellHeight
 
+    /*! \qmlproperty bool KaakaoGridView::interactive
+        Whether the user can interact with the grid (scrolling, flicking).
+        Defaults to true for desktop mouse wheel and touchpad support.
+    */
+    property alias interactive: gridView.interactive
+
     clip: true
     contentWidth: availableWidth
 
@@ -55,8 +61,6 @@ ScrollView {
         anchors.fill: parent
         anchors.margins: 1
         
-        // Desktop optimization: Disable mobile-style flicking
-        interactive: false
         boundsBehavior: Flickable.StopAtBounds
         
         keyNavigationEnabled: true
