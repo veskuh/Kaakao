@@ -65,8 +65,8 @@ TestCase {
         
         // If it has focus, check text inversion
         if (view.activeFocus) {
-            let row = d1.contentItem
-            let textItem = row.children[1]
+            let textItem = findChild(d1, "titleLabel")
+            verify(textItem, "Title label should exist")
             compare(textItem.color, Qt.color("#FFFFFF"), "Text color should be inverted to white when focused")
         }
     }

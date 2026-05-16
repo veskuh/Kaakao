@@ -98,6 +98,7 @@ ItemDelegate {
             width: parent.width - (rowIcon.visible ? 26 : 0) - (rightText.visible ? rightText.width + 10 : 0)
 
             Label {
+                objectName: "titleLabel"
                 width: parent.width
                 text: control.text
                 font: Theme.defaultFont
@@ -109,6 +110,7 @@ ItemDelegate {
             }
 
             Label {
+                objectName: "subtitleLabel"
                 width: parent.width
                 text: control.subtitle
                 visible: text.length > 0
@@ -124,6 +126,7 @@ ItemDelegate {
 
         Label {
             id: rightText
+            objectName: "secondaryLabel"
             anchors.verticalCenter: parent.verticalCenter
             text: control.secondaryText
             visible: text.length > 0
