@@ -12,11 +12,25 @@ import QtQuick.Controls.Basic
 Rectangle {
     id: control
 
+    /*! \qmlproperty string KaakaoStatusIndicator::status
+        The status to display. Supported values: "success", "error", "warning", "info", and "none".
+        Defaults to "none" (grey).
+    */
+    property string status: "none"
+
     implicitWidth: 12
     implicitHeight: 12
     radius: width / 2
     
-    color: "#aaaaaa"
+    color: {
+        switch (status) {
+            case "success": return Theme.colorSuccess;
+            case "error": return Theme.colorError;
+            case "warning": return Theme.colorWarning;
+            case "info": return Theme.colorInfo;
+            default: return "#aaaaaa";
+        }
+    }
     border.color: Qt.darker(color, 1.4)
     border.width: 1
 

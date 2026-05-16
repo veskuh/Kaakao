@@ -25,8 +25,18 @@ ItemDelegate {
     id: control
 
     // Desktop rows are compact for data density
-    implicitHeight: 24
+    implicitHeight: subtitle.length > 0 ? 36 : 24
     implicitWidth: ListView.view ? ListView.view.width : 200
+
+    /*! \qmlproperty string KaakaoListDelegate::subtitle
+        Secondary text displayed below the main title.
+    */
+    property string subtitle: ""
+
+    /*! \qmlproperty string KaakaoListDelegate::secondaryText
+        Text displayed on the right side of the delegate (e.g., file size).
+    */
+    property string secondaryText: ""
 
     /*!
         \qmlproperty bool KaakaoListDelegate::isEvenRow
@@ -74,25 +84,55 @@ ItemDelegate {
         anchors.fill: parent
         anchors.leftMargin: 8
         anchors.rightMargin: 8
-        spacing: 6
+        spacing: 10
 
         Image {
             id: rowIcon
             anchors.verticalCenter: parent.verticalCenter
             width: 16; height: 16
             visible: status === Image.Ready
-            // Note: In a production app, use a shader here to overlay white on the icon if selected!
+        }
+
+        Column {
+            anchors.verticalCenter: parent.verticalCenter
+            width: parent.width - (rowIcon.visible ? 26 : 0) - (rightText.visible ? rightText.width + 10 : 0)
+
+            Label {
+                width: parent.width
+                text: control.text
+                font: Theme.defaultFont
+                renderType: Text.NativeRendering
+                elide: Text.ElideRight
+                color: (control.isSelected && control.ListView.view && control.ListView.view.activeFocus) 
+                       ? "#FFFFFF" 
+                       : Theme.primaryText
+            }
+
+            Label {
+                width: parent.width
+                text: control.subtitle
+                visible: text.length > 0
+                font.pixelSize: 11
+                font.family: Theme.defaultFont.family
+                renderType: Text.NativeRendering
+                elide: Text.ElideRight
+                color: (control.isSelected && control.ListView.view && control.ListView.view.activeFocus) 
+                       ? Qt.rgba(1,1,1,0.7) 
+                       : Qt.rgba(Theme.primaryText.r, Theme.primaryText.g, Theme.primaryText.b, 0.6)
+            }
         }
 
         Label {
+            id: rightText
             anchors.verticalCenter: parent.verticalCenter
-            text: control.text
-            font: Theme.defaultFont
+            text: control.secondaryText
+            visible: text.length > 0
+            font.pixelSize: 11
+            font.family: Theme.defaultFont.family
             renderType: Text.NativeRendering
-            // Text color logic: Invert to white if highlighted with Primary Accent
             color: (control.isSelected && control.ListView.view && control.ListView.view.activeFocus) 
-                   ? "#FFFFFF" 
-                   : Theme.primaryText
+                   ? Qt.rgba(1,1,1,0.7) 
+                   : Qt.rgba(Theme.primaryText.r, Theme.primaryText.g, Theme.primaryText.b, 0.6)
         }
     }
 }

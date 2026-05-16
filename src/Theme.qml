@@ -180,6 +180,27 @@ QtObject {
     */
     readonly property real radiusLarge: 10
 
+    // Layout Constants
+    /*! \qmlproperty real Theme::standardPadding
+        The standard padding (20px) used for window margins and large containers.
+    */
+    readonly property real standardPadding: 20
+
+    /*! \qmlproperty real Theme::paddingMedium
+        A medium padding (12px) used for grouped controls and sections.
+    */
+    readonly property real paddingMedium: 12
+
+    /*! \qmlproperty real Theme::paddingSmall
+        A small padding (8px) used for compact internal component margins.
+    */
+    readonly property real paddingSmall: 8
+
+    /*! \qmlproperty real Theme::layoutSpacing
+        The standard spacing (16px) between related layout elements.
+    */
+    readonly property real layoutSpacing: 16
+
     // Typography
     /*! \qmlproperty font Theme::defaultFont
         The default system font used throughout the toolkit.

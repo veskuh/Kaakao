@@ -84,7 +84,8 @@ KaakaoWindow {
             model: ListModel {
                 ListElement { name: "Components"; icon: "🧩"; category: "Library" }
                 ListElement { name: "Inputs"; icon: "⌨️"; category: "Library" }
-                ListElement { name: "Project"; icon: "📦"; category: "General" }
+                ListElement { name: "Data Views"; icon: "📊"; category: "Library" }
+                ListElement { name: "Theme"; icon: "🎨"; category: "General" }
                 ListElement { name: "Settings"; icon: "⚙️"; category: "General" }
             }
         }
@@ -100,24 +101,23 @@ KaakaoWindow {
                 id: componentsScroll
                 clip: true
                 contentWidth: availableWidth
+                padding: Theme.standardPadding
                 
                 ColumnLayout {
-                    width: componentsScroll.availableWidth
-                    spacing: 0 // Using 0 spacing for precise manual offsets
-
-                    Item { Layout.preferredHeight: 10 } // Matches Sidebar anchors.topMargin: 10
+                    width: componentsScroll.availableWidth - (componentsScroll.padding * 2)
+                    spacing: 0
 
                     KaakaoLabel {
                         text: "Core Components"
                         role: KaakaoLabel.Role.Header
                         Layout.alignment: Qt.AlignHCenter
-                        Layout.bottomMargin: 32 // Re-add vertical spacing below header
+                        Layout.bottomMargin: 32
                     }
 
                     GridLayout {
                         columns: 2
                         columnSpacing: 20
-                        rowSpacing: 16
+                        rowSpacing: Theme.layoutSpacing
                         Layout.alignment: Qt.AlignHCenter
 
                         KaakaoLabel { 
@@ -242,8 +242,6 @@ KaakaoWindow {
 
                     KaakaoSeparator {
                         Layout.fillWidth: true
-                        Layout.leftMargin: 40
-                        Layout.rightMargin: 40
                     }
 
                     Item { Layout.preferredHeight: 32 }
@@ -258,7 +256,7 @@ KaakaoWindow {
                     GridLayout {
                         columns: 2
                         columnSpacing: 20
-                        rowSpacing: 16
+                        rowSpacing: Theme.layoutSpacing
                         Layout.alignment: Qt.AlignHCenter
 
                         KaakaoLabel { 
@@ -312,9 +310,28 @@ KaakaoWindow {
                                 Layout.preferredWidth: 100
                             }
                         }
+
+                        KaakaoLabel { 
+                            text: "Dialog Window:" 
+                            Layout.alignment: Qt.AlignRight
+                        }
+                        KaakaoButton {
+                            text: "Open Dialog"
+                            onClicked: sampleDialog.open()
+                            Layout.alignment: Qt.AlignLeft
+                        }
                     }
 
                     Item { Layout.preferredHeight: 40 } // Bottom Spacer
+                }
+
+                KaakaoDialog {
+                    id: sampleDialog
+                    title: "System Update"
+                    text: "A new version of Kaakao is available. Would you like to install it now?"
+                    symbol: "💾"
+                    onAccepted: console.log("Update accepted")
+                    onRejected: console.log("Update postponed")
                 }
             }
 
@@ -323,12 +340,11 @@ KaakaoWindow {
                 id: inputsScroll
                 clip: true
                 contentWidth: availableWidth
+                padding: Theme.standardPadding
 
                 ColumnLayout {
-                    width: inputsScroll.availableWidth
+                    width: inputsScroll.availableWidth - (inputsScroll.padding * 2)
                     spacing: 0
-
-                    Item { Layout.preferredHeight: 10 } // Matches Sidebar topMargin
 
                     KaakaoLabel {
                         text: "Form Controls"
@@ -340,7 +356,7 @@ KaakaoWindow {
                     GridLayout {
                         columns: 2
                         columnSpacing: 20
-                        rowSpacing: 16
+                        rowSpacing: Theme.layoutSpacing
                         Layout.alignment: Qt.AlignHCenter
 
                         KaakaoLabel { 
@@ -410,23 +426,39 @@ KaakaoWindow {
                 }
             }
 
-            // 2: Project View
-            Item {
+            // 2: Data Views
+            ScrollView {
+                id: dataViewsScroll
+                clip: true
+                contentWidth: availableWidth
+                padding: Theme.standardPadding
+
                 ColumnLayout {
-                    anchors.fill: parent
-                    anchors.margins: 20
-                    spacing: 16
+                    width: dataViewsScroll.availableWidth - (dataViewsScroll.padding * 2)
+                    spacing: Theme.layoutSpacing
 
                     KaakaoLabel {
-                        text: "Project Resources"
+                        text: "Data Views"
                         role: KaakaoLabel.Role.Header
-                        Layout.alignment: Qt.AlignLeft
+                        Layout.alignment: Qt.AlignHCenter
+                        Layout.bottomMargin: 16
+                    }
+
+                    KaakaoPathControl {
+                        path: "Kaakao > src > components"
+                        Layout.fillWidth: true
+                    }
+
+                    KaakaoLabel {
+                        text: "Table View"
+                        role: KaakaoLabel.Role.Secondary
+                        Layout.alignment: Qt.AlignHCenter
                     }
 
                     KaakaoTableView {
                         id: projectList
                         Layout.fillWidth: true
-                        Layout.fillHeight: true
+                        Layout.preferredHeight: 250
                         
                         columns: [
                             KaakaoTableColumn { title: "Name"; role: "name"; width: 200 },
@@ -459,10 +491,169 @@ KaakaoWindow {
                             projectData = data
                         }
                     }
+
+                    KaakaoStatusBar {
+                        Layout.fillWidth: true
+                        KaakaoLabel {
+                            text: projectList.projectData.length + " items"
+                            role: KaakaoLabel.Role.Small
+                            Layout.alignment: Qt.AlignVCenter
+                        }
+                    }
+
+                    Item { Layout.preferredHeight: 32 }
+
+                    KaakaoLabel {
+                        text: "List View"
+                        role: KaakaoLabel.Role.Secondary
+                        Layout.alignment: Qt.AlignHCenter
+                    }
+
+                    KaakaoListView {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 200
+                        model: ListModel {
+                            ListElement { name: "Finder"; category: "Application"; size: "45 MB" }
+                            ListElement { name: "System Preferences"; category: "System"; size: "12 MB" }
+                            ListElement { name: "Preview"; category: "Application"; size: "32 MB" }
+                            ListElement { name: "Terminal"; category: "Utility"; size: "8 MB" }
+                        }
+                        delegate: KaakaoListDelegate {
+                            text: model.name
+                            subtitle: model.category
+                            secondaryText: model.size
+                            width: ListView.view.width
+                        }
+                    }
                 }
             }
 
-            // 3: Settings View
+            // 3: Theme View
+            ScrollView {
+                id: themeScroll
+                clip: true
+                contentWidth: availableWidth
+                padding: Theme.standardPadding
+
+                ColumnLayout {
+                    width: themeScroll.availableWidth - (themeScroll.padding * 2)
+                    spacing: 32
+
+                    KaakaoLabel {
+                        text: "Theme & Design System"
+                        role: KaakaoLabel.Role.Header
+                        Layout.alignment: Qt.AlignHCenter
+                        Layout.bottomMargin: 0
+                    }
+
+                    KaakaoGroupBox {
+                        title: "Semantic Colors"
+                        Layout.fillWidth: true
+                        
+                        Flow {
+                            width: parent.width
+                            spacing: 20
+                            
+                            Repeater {
+                                model: [
+                                    { name: "Success", color: Theme.colorSuccess },
+                                    { name: "Error", color: Theme.colorError },
+                                    { name: "Warning", color: Theme.colorWarning },
+                                    { name: "Info", color: Theme.colorInfo },
+                                    { name: "Accent", color: Theme.primaryAccent }
+                                ]
+                                delegate: ColumnLayout {
+                                    Rectangle {
+                                        width: 60; height: 30
+                                        radius: 4
+                                        color: modelData.color
+                                        border.color: Theme.buttonBorder
+                                        border.width: 1
+                                    }
+                                    KaakaoLabel {
+                                        text: modelData.name
+                                        role: KaakaoLabel.Role.Small
+                                        Layout.alignment: Qt.AlignHCenter
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    KaakaoGroupBox {
+                        title: "Status & Feedback"
+                        Layout.fillWidth: true
+
+                        GridLayout {
+                            columns: 2
+                            columnSpacing: 32
+                            rowSpacing: 16
+
+                            KaakaoLabel { text: "Status Indicators:" }
+                            RowLayout {
+                                spacing: 12
+                                KaakaoStatusIndicator { status: "success" }
+                                KaakaoStatusIndicator { status: "error" }
+                                KaakaoStatusIndicator { status: "warning" }
+                                KaakaoStatusIndicator { status: "info" }
+                            }
+
+                            KaakaoLabel { text: "Activity Overlay:" }
+                            KaakaoButton {
+                                text: "Show Overlay (2s)"
+                                onClicked: {
+                                    activityOverlay.active = true
+                                    overlayTimer.start()
+                                }
+                            }
+                        }
+                    }
+
+                    KaakaoGroupBox {
+                        title: "Geometry"
+                        Layout.fillWidth: true
+
+                        GridLayout {
+                            columns: 2
+                            columnSpacing: 32
+                            rowSpacing: 16
+
+                            KaakaoLabel { text: "Standard Radius:" }
+                            KaakaoLabel { text: Theme.radiusStandard + "px"; role: KaakaoLabel.Role.Secondary }
+
+                            KaakaoLabel { text: "Small Radius:" }
+                            KaakaoLabel { text: Theme.radiusSmall + "px"; role: KaakaoLabel.Role.Secondary }
+
+                            KaakaoLabel { text: "Large Radius:" }
+                            KaakaoLabel { text: Theme.radiusLarge + "px"; role: KaakaoLabel.Role.Secondary }
+
+                            KaakaoLabel { text: "Standard Padding:" }
+                            KaakaoLabel { text: Theme.standardPadding + "px"; role: KaakaoLabel.Role.Secondary }
+
+                            KaakaoLabel { text: "Medium Padding:" }
+                            KaakaoLabel { text: Theme.paddingMedium + "px"; role: KaakaoLabel.Role.Secondary }
+
+                            KaakaoLabel { text: "Small Padding:" }
+                            KaakaoLabel { text: Theme.paddingSmall + "px"; role: KaakaoLabel.Role.Secondary }
+                        }
+                    }
+                }
+
+                KaakaoActivityOverlay {
+                    id: activityOverlay
+                    anchors.fill: parent
+                    active: false
+                    text: "Processing..."
+                    
+                    Timer {
+                        id: overlayTimer
+                        interval: 2000
+                        onTriggered: activityOverlay.active = false
+                    }
+                }
+            }
+
+            // 4: Settings View
             Item {
                 ColumnLayout {
                     anchors.centerIn: parent

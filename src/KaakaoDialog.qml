@@ -13,8 +13,19 @@ import Qt5Compat.GraphicalEffects
 */
 Dialog {
     id: control
-    implicitWidth: Math.max(header.implicitWidth, contentItem.implicitWidth) + leftPadding + rightPadding
+    implicitWidth: 360
+    modal: true
     
+    /*! \qmlproperty string KaakaoDialog::text
+        The message text to display in the dialog.
+    */
+    property string text: ""
+
+    /*! \qmlproperty string KaakaoDialog::symbol
+        A symbol or emoji to display as the dialog's icon.
+    */
+    property string symbol: ""
+
     background: Rectangle {
         color: Theme.windowBackground
         border.color: Theme.buttonBorder
@@ -39,6 +50,25 @@ Dialog {
         horizontalAlignment: Text.AlignHCenter
         padding: 12
         visible: control.title.length > 0
+    }
+
+    contentItem: Row {
+        spacing: 16
+        padding: 20
+
+        Text {
+            text: control.symbol
+            font.pixelSize: 48
+            visible: control.symbol.length > 0
+            verticalAlignment: Text.AlignTop
+        }
+
+        KaakaoLabel {
+            text: control.text
+            width: parent.width - (control.symbol.length > 0 ? 64 : 0) - 40
+            wrapMode: Text.WordWrap
+            verticalAlignment: Text.AlignVCenter
+        }
     }
 
     footer: DialogButtonBox {
