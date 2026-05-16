@@ -30,6 +30,10 @@ qt_add_qml_module(Kaakao
         KaakaoTableView.qml
         KaakaoTableRowDelegate.qml
         KaakaoTableColumn.qml
+        KaakaoSeparator.qml
+        KaakaoBadge.qml
+        KaakaoBusyIndicator.qml
+        KaakaoGroupBox.qml
 )
 
 target_link_libraries(Kaakao PRIVATE Qt6::Core5Compat Qt6::ShaderTools)

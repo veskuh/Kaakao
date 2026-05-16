@@ -238,6 +238,82 @@ KaakaoWindow {
                         }
                     }
 
+                    Item { Layout.preferredHeight: 32 }
+
+                    KaakaoSeparator {
+                        Layout.fillWidth: true
+                        Layout.leftMargin: 40
+                        Layout.rightMargin: 40
+                    }
+
+                    Item { Layout.preferredHeight: 32 }
+
+                    KaakaoLabel {
+                        text: "Utility Components"
+                        role: KaakaoLabel.Role.Header
+                        Layout.alignment: Qt.AlignHCenter
+                        Layout.bottomMargin: 32
+                    }
+
+                    GridLayout {
+                        columns: 2
+                        columnSpacing: 20
+                        rowSpacing: 16
+                        Layout.alignment: Qt.AlignHCenter
+
+                        KaakaoLabel { 
+                            text: "Busy Indicator:" 
+                            Layout.alignment: Qt.AlignRight
+                        }
+                        KaakaoBusyIndicator {
+                            running: true
+                            Layout.alignment: Qt.AlignLeft
+                        }
+
+                        KaakaoLabel { 
+                            text: "Badges:" 
+                            Layout.alignment: Qt.AlignRight
+                        }
+                        RowLayout {
+                            spacing: 12
+                            Layout.alignment: Qt.AlignLeft
+                            KaakaoBadge { text: "42" }
+                            KaakaoBadge { text: "Important"; highlighted: true }
+                        }
+
+                        KaakaoLabel { 
+                            text: "Group Box:" 
+                            Layout.alignment: Qt.AlignRight | Qt.AlignTop
+                        }
+                        KaakaoGroupBox {
+                            title: "Settings Group"
+                            Layout.preferredWidth: 200
+                            Layout.alignment: Qt.AlignLeft
+                            ColumnLayout {
+                                anchors.fill: parent
+                                KaakaoCheckBox { text: "Enable Feature X" }
+                                KaakaoCheckBox { text: "Enable Feature Y" }
+                            }
+                        }
+                        
+                        KaakaoLabel { 
+                            text: "Separators:" 
+                            Layout.alignment: Qt.AlignRight
+                        }
+                        RowLayout {
+                            spacing: 20
+                            Layout.alignment: Qt.AlignLeft
+                            KaakaoSeparator { 
+                                orientation: Qt.Vertical
+                                Layout.preferredHeight: 40
+                            }
+                            KaakaoSeparator { 
+                                orientation: Qt.Horizontal
+                                Layout.preferredWidth: 100
+                            }
+                        }
+                    }
+
                     Item { Layout.preferredHeight: 40 } // Bottom Spacer
                 }
             }

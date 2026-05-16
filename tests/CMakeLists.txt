@@ -1,5 +1,12 @@
 # Copy QML files to build directory for execution
-file(COPY tst_theme.qml tst_kaakaobutton.qml tst_window.qml tst_label.qml tst_dialog.qml tst_about.qml tst_textfield.qml tst_controls.qml tst_toolbar.qml tst_sidebar.qml tst_indicators.qml tst_searchfield.qml tst_disclosure.qml tst_listview.qml tst_tableview.qml DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
+file(COPY tst_theme.qml tst_kaakaobutton.qml tst_window.qml tst_label.qml tst_dialog.qml tst_about.qml tst_textfield.qml tst_controls.qml tst_toolbar.qml tst_sidebar.qml tst_indicators.qml tst_searchfield.qml tst_disclosure.qml tst_listview.qml tst_tableview.qml tst_small_components.qml DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
+
+# Small Components Test
+qt_add_executable(tst_small_components main.cpp)
+target_link_libraries(tst_small_components PRIVATE Qt6::Core Qt6::Gui Qt6::Qml Qt6::Quick Qt6::Test Qt6::QuickTest Kaakao)
+target_compile_definitions(tst_small_components PRIVATE QUICK_TEST_SOURCE_DIR="${CMAKE_CURRENT_BINARY_DIR}")
+add_test(NAME tst_small_components COMMAND tst_small_components -input tst_small_components.qml)
+set_tests_properties(tst_small_components PROPERTIES ENVIRONMENT "QML_IMPORT_PATH=${CMAKE_BINARY_DIR}/qml")
 
 # Theme Test
 qt_add_executable(tst_theme main.cpp)

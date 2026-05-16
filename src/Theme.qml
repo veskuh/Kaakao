@@ -115,6 +115,18 @@ QtObject {
     readonly property color sidebarBorder: isDarkMode ? "#121212" : "#C4C4C4"
     readonly property color sidebarSectionText: isDarkMode ? "#8E8E8E" : "#6E6E6E"
 
+    // Separator Colors
+    readonly property color separatorDark: isDarkMode ? "#121212" : "#D1D1D1"
+    readonly property color separatorLight: isDarkMode ? "#3A3A3A" : "#FFFFFF"
+
+    // Badge Colors
+    readonly property color badgeBackground: isDarkMode ? "#4A4A4A" : "#C4C4C4"
+    readonly property color badgeText: "#FFFFFF"
+    readonly property color badgeHighlight: primaryAccent
+
+    // BusyIndicator Colors
+    readonly property color busyIndicatorTick: isDarkMode ? "#A5A5A5" : "#666666"
+
     // Primary/Accent Button
     /*! \qmlproperty color Theme::accentGradTop
         The top color of the primary accent button gradient.
