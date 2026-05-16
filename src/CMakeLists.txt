@@ -34,6 +34,8 @@ qt_add_qml_module(Kaakao
         KaakaoBadge.qml
         KaakaoBusyIndicator.qml
         KaakaoGroupBox.qml
+        KaakaoStatusBar.qml
+        KaakaoStatusIndicator.qml
 )
 
 target_link_libraries(Kaakao PRIVATE Qt6::Core5Compat Qt6::ShaderTools)

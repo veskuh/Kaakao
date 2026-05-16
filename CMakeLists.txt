@@ -19,14 +19,12 @@ endif()
 
 enable_testing()
 
-# Always add the component module
+# Add the component module
 add_subdirectory(src)
 
-# Only add the gallery and tests if this is the top-level project
-if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
-    add_subdirectory(gallery)
-    add_subdirectory(tests)
-endif()
+# Always add gallery and tests to allow verification
+add_subdirectory(gallery)
+add_subdirectory(tests)
 
 # Documentation target
 find_program(QDOC_EXECUTABLE qdoc)
