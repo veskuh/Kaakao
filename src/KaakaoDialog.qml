@@ -44,41 +44,47 @@ Dialog {
         }
     }
 
-    header: KaakaoLabel {
-        text: control.title
-        role: KaakaoLabel.Role.Header
-        horizontalAlignment: Text.AlignHCenter
-        padding: 12
+    header: Item {
+        implicitHeight: titleLabel.implicitHeight + 24
         visible: control.title.length > 0
+        KaakaoLabel {
+            id: titleLabel
+            anchors.centerIn: parent
+            text: control.title
+            font.weight: Font.Bold
+            font.pixelSize: 14
+        }
     }
 
     contentItem: Row {
-        spacing: 16
-        padding: 20
+        spacing: 20
+        padding: 24
+        topPadding: control.title.length > 0 ? 0 : 24
 
         Text {
-            text: control.symbol
-            font.pixelSize: 48
-            visible: control.symbol.length > 0
+            text: control.symbol || "⚠️"
+            font.pixelSize: 56
+            visible: true
             verticalAlignment: Text.AlignTop
         }
 
         KaakaoLabel {
             text: control.text
-            width: parent.width - (control.symbol.length > 0 ? 64 : 0) - 40
+            width: parent.width - 56 - 20 - 48
             wrapMode: Text.WordWrap
-            verticalAlignment: Text.AlignVCenter
+            verticalAlignment: Text.AlignTop
+            lineHeight: 1.2
         }
     }
 
     footer: DialogButtonBox {
-        background: Rectangle {
-            color: "transparent"
-        }
-        alignment: Qt.AlignHCenter
-        padding: 12
+        background: Item {}
+        alignment: Qt.AlignRight
+        padding: 16
+        spacing: 12
         
-        // We will need to style the buttons in the button box 
-        // but for now, we'll let them inherit or we'll use custom buttons.
+        delegate: KaakaoButton {
+            highlighted: DialogButtonBox.buttonRole === DialogButtonBox.AcceptRole || DialogButtonBox.buttonRole === DialogButtonBox.YesRole
+        }
     }
 }

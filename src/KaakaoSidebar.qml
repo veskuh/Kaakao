@@ -29,6 +29,8 @@ Rectangle {
     property bool collapsed: false
     property real sidebarWidth: 200
 
+    signal contextMenu(int index, var globalPos)
+
     implicitWidth: collapsed ? 0 : sidebarWidth
     Behavior on implicitWidth { NumberAnimation { duration: 250; easing.type: Easing.InOutQuad } }
 
@@ -94,6 +96,14 @@ Rectangle {
             }
             
             onClicked: listView.currentIndex = index
+
+            MouseArea {
+                anchors.fill: parent
+                acceptedButtons: Qt.RightButton
+                onClicked: (mouse) => {
+                    control.contextMenu(index, mapToItem(null, mouse.x, mouse.y))
+                }
+            }
         }
         
         section.property: "category"
