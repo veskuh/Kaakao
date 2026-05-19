@@ -41,6 +41,9 @@ qt_add_qml_module(Kaakao
         KaakaoSplitView.qml
         KaakaoGridView.qml
         KaakaoGridDelegate.qml
+        KaakaoMenu.qml
+        KaakaoMenuItem.qml
+        KaakaoMenuSeparator.qml
 )
 
 target_link_libraries(Kaakao PRIVATE Qt6::Core5Compat Qt6::ShaderTools)

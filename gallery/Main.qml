@@ -401,6 +401,33 @@ KaakaoWindow {
                         }
 
                         KaakaoLabel { 
+                            text: "Context Menu:" 
+                            Layout.alignment: Qt.AlignRight
+                        }
+                        KaakaoButton {
+                            text: "Open Menu"
+                            Layout.alignment: Qt.AlignLeft
+                            onClicked: contextMenu.open()
+
+                            KaakaoMenu {
+                                id: contextMenu
+                                KaakaoMenuItem { text: "New Tab"; shortcut: "⌘T" }
+                                KaakaoMenuItem { text: "New Window"; shortcut: "⌘N" }
+                                KaakaoMenuSeparator { }
+                                KaakaoMenuItem { text: "Checkable Item"; checkable: true; checked: true }
+                                KaakaoMenuItem { text: "Disabled Item"; enabled: false }
+                                KaakaoMenuSeparator { }
+                                KaakaoMenu {
+                                    title: "Submenu"
+                                    KaakaoMenuItem { text: "Sub-item 1" }
+                                    KaakaoMenuItem { text: "Sub-item 2" }
+                                }
+                                KaakaoMenuSeparator { }
+                                KaakaoMenuItem { text: "Quit"; shortcut: "⌘Q" }
+                            }
+                        }
+
+                        KaakaoLabel { 
                             text: "Checkboxes:" 
                             Layout.alignment: Qt.AlignRight
                         }
