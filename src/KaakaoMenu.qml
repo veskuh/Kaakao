@@ -14,24 +14,22 @@ import Qt5Compat.GraphicalEffects
 Menu {
     id: control
 
-    implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
-                            contentWidth + leftPadding + rightPadding)
-    implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
-                             contentHeight + topPadding + bottomPadding)
+    implicitWidth: Math.max(150, contentItem.implicitWidth + leftPadding + rightPadding)
+    implicitHeight: Math.max(implicitBackgroundHeight, contentHeight + topPadding + bottomPadding)
 
     margins: 0
-    padding: 4 // Reduced from 5 for tighter look
+    padding: 1 // Tight macOS border padding
 
     delegate: KaakaoMenuItem { }
 
     background: Rectangle {
         implicitWidth: 150
-        implicitHeight: 40
+        implicitHeight: 30
         color: Theme.contentBackground
-        opacity: 0.95
+        opacity: 0.98
         border.color: Theme.sidebarBorder
         border.width: 1
-        radius: 6
+        radius: 5
 
         layer.enabled: true
         layer.effect: DropShadow {
