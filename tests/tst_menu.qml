@@ -67,4 +67,19 @@ TestCase {
         verify(sep.contentItem !== null, "Separator should have contentItem")
         compare(sep.implicitHeight, 11, "Separator should have standard height")
     }
+
+    function test_06_disabled_state() {
+        let menu = createTemporaryObject(menuComponent, this)
+        let item3 = menu.itemAt(3) // Item 3 is disabled
+        verify(!item3.enabled, "Item 3 should be disabled")
+        
+        // Find contentItem and check opacity
+        let content = item3.contentItem
+        verify(content !== null, "Content item should exist")
+        compare(content.opacity, 0.5, "Disabled item should have 0.5 opacity")
+        
+        let item1 = menu.itemAt(0)
+        verify(item1.enabled, "Item 1 should be enabled")
+        compare(item1.contentItem.opacity, 1.0, "Enabled item should have 1.0 opacity")
+    }
 }

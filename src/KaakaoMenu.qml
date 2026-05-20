@@ -24,7 +24,7 @@ Menu {
 
     background: Rectangle {
         implicitWidth: 150
-        implicitHeight: 30
+        implicitHeight: 15
         color: Theme.contentBackground
         opacity: 0.98
         border.color: Theme.sidebarBorder

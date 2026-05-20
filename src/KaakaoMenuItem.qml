@@ -30,6 +30,7 @@ MenuItem {
     font: Theme.defaultFont
 
     contentItem: Item {
+        opacity: control.enabled ? 1.0 : 0.5
         Text {
             id: label
             anchors.left: parent.left
@@ -60,6 +61,7 @@ MenuItem {
         width: 12
         height: 12
         visible: control.checkable && control.checked
+        opacity: control.enabled ? 1.0 : 0.5
 
         Text {
             anchors.centerIn: parent
