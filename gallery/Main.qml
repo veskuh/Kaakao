@@ -294,6 +294,42 @@ KaakaoWindow {
                                 KaakaoCheckBox { text: "Enable Feature Y" }
                             }
                         }
+
+                        KaakaoLabel { 
+                            text: "Tab Bar:" 
+                            Layout.alignment: Qt.AlignRight | Qt.AlignTop
+                        }
+                        ColumnLayout {
+                            spacing: 0
+                            Layout.alignment: Qt.AlignLeft
+                            Layout.preferredWidth: 300
+
+                            KaakaoTabBar {
+                                id: galleryTabBar
+                                Layout.fillWidth: true
+                                KaakaoTabButton { text: "General" }
+                                KaakaoTabButton { text: "Advanced" }
+                                KaakaoTabButton { text: "Plugins" }
+                            }
+
+                            Rectangle {
+                                Layout.fillWidth: true
+                                Layout.preferredHeight: 80
+                                color: Theme.contentBackground
+                                border.color: Theme.buttonBorder
+                                border.width: 1
+
+                                StackLayout {
+                                    anchors.fill: parent
+                                    anchors.margins: 12
+                                    currentIndex: galleryTabBar.currentIndex
+
+                                    KaakaoLabel { text: "General settings content"; Layout.alignment: Qt.AlignCenter }
+                                    KaakaoLabel { text: "Advanced settings content"; Layout.alignment: Qt.AlignCenter }
+                                    KaakaoLabel { text: "Plugins settings content"; Layout.alignment: Qt.AlignCenter }
+                                }
+                            }
+                        }
                         
                         KaakaoLabel { 
                             text: "Separators:" 

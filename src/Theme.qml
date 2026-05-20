@@ -222,6 +222,12 @@ QtObject {
     readonly property color segmentedSelectionGradTop: isDarkMode ? "#555555" : "#FFFFFF"
     readonly property color segmentedSelectionGradBottom: isDarkMode ? "#333333" : "#EEEEEE"
 
+    // Tab Bar Colors
+    readonly property color tabBarBorder: isDarkMode ? "#121212" : "#B0B0B0"
+    readonly property color tabInactiveGradTop: isDarkMode ? "#3C3C3C" : "#DCDCDC"
+    readonly property color tabInactiveGradBottom: isDarkMode ? "#333333" : "#CCCCCC"
+    readonly property color tabInactivePressed: isDarkMode ? "#2E2E2E" : "#C0C0C0"
+
     // Search Field Clear Button Colors
     readonly property color searchFieldClearButton: isDarkMode ? "#666666" : "#BBBBBB"
     readonly property color searchFieldClearButtonPressed: isDarkMode ? "#888888" : "#888888"

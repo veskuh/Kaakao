@@ -1,5 +1,5 @@
 # Copy QML files to build directory for execution
-file(COPY tst_theme.qml tst_kaakaobutton.qml tst_window.qml tst_label.qml tst_dialog.qml tst_about.qml tst_textfield.qml tst_controls.qml tst_toolbar.qml tst_sidebar.qml tst_indicators.qml tst_searchfield.qml tst_disclosure.qml tst_listview.qml tst_tableview.qml tst_small_components.qml tst_splitview.qml tst_gridview.qml tst_menu.qml DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
+file(COPY tst_theme.qml tst_kaakaobutton.qml tst_window.qml tst_label.qml tst_dialog.qml tst_about.qml tst_textfield.qml tst_controls.qml tst_toolbar.qml tst_sidebar.qml tst_indicators.qml tst_searchfield.qml tst_disclosure.qml tst_listview.qml tst_tableview.qml tst_small_components.qml tst_splitview.qml tst_gridview.qml tst_menu.qml tst_tabbar.qml DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
 
 # Menu Test
 qt_add_executable(tst_menu main.cpp)
@@ -134,3 +134,10 @@ target_link_libraries(tst_tableview PRIVATE Qt6::Core Qt6::Gui Qt6::Qml Qt6::Qui
 target_compile_definitions(tst_tableview PRIVATE QUICK_TEST_SOURCE_DIR="${CMAKE_CURRENT_BINARY_DIR}")
 add_test(NAME tst_tableview COMMAND tst_tableview -input tst_tableview.qml)
 set_tests_properties(tst_tableview PROPERTIES ENVIRONMENT "QML_IMPORT_PATH=${CMAKE_BINARY_DIR}/qml")
+
+# TabBar Test
+qt_add_executable(tst_tabbar main.cpp)
+target_link_libraries(tst_tabbar PRIVATE Qt6::Core Qt6::Gui Qt6::Qml Qt6::Quick Qt6::Test Qt6::QuickTest Kaakao)
+target_compile_definitions(tst_tabbar PRIVATE QUICK_TEST_SOURCE_DIR="${CMAKE_CURRENT_BINARY_DIR}")
+add_test(NAME tst_tabbar COMMAND tst_tabbar -input tst_tabbar.qml)
+set_tests_properties(tst_tabbar PROPERTIES ENVIRONMENT "QML_IMPORT_PATH=${CMAKE_BINARY_DIR}/qml")
