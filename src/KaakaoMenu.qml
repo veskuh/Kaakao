@@ -42,7 +42,6 @@ Menu {
     }
 
     contentItem: ListView {
-        implicitWidth: contentWidth
         implicitHeight: contentHeight
         model: control.contentModel
         interactive: Window.window
@@ -50,6 +49,18 @@ Menu {
                      : false
         clip: true
         currentIndex: control.currentIndex
+
+        // ListView.contentWidth does not auto-compute from delegates.
+        // Walk all items to find the widest one so the menu scales correctly.
+        implicitWidth: {
+            var maxW = 0
+            for (var i = 0; i < control.count; ++i) {
+                var item = control.itemAt(i)
+                if (item)
+                    maxW = Math.max(maxW, item.implicitWidth)
+            }
+            return maxW
+        }
 
         ScrollIndicator.vertical: ScrollIndicator { }
     }

@@ -449,6 +449,7 @@ KaakaoWindow {
                                 id: contextMenu
                                 KaakaoMenuItem { text: "New Tab"; shortcut: "⌘T" }
                                 KaakaoMenuItem { text: "New Window"; shortcut: "⌘N" }
+                                KaakaoMenuItem { text: "Open in the default app" }
                                 KaakaoMenuSeparator { }
                                 KaakaoMenuItem { text: "Checkable Item"; checkable: true; checked: true }
                                 KaakaoMenuItem { text: "Disabled Item"; enabled: false }

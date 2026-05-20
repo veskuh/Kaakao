@@ -34,6 +34,8 @@ MenuItem {
         Text {
             id: label
             anchors.left: parent.left
+            anchors.right: shortcutLabel.visible ? shortcutLabel.left : parent.right
+            anchors.rightMargin: shortcutLabel.visible ? 12 : 0
             anchors.verticalCenter: parent.verticalCenter
             text: control.text
             font: control.font
