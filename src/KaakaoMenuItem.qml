@@ -37,7 +37,7 @@ MenuItem {
             anchors.verticalCenter: parent.verticalCenter
             text: control.text
             font: control.font
-            color: control.highlighted ? "#FFFFFF" : Theme.primaryText
+            color: control.highlighted ? Theme.selectionTextActive : Theme.selectionTextInactive
             elide: Text.ElideRight
             renderType: Text.NativeRendering
         }
@@ -49,7 +49,7 @@ MenuItem {
             anchors.verticalCenter: parent.verticalCenter
             text: control.shortcut
             font: control.font
-            color: control.highlighted ? "#FFFFFF" : (Theme.isDarkMode ? "#8E8E8E" : "#6E6E6E")
+            color: control.highlighted ? Theme.selectionTextActive : Theme.sidebarSectionText
             visible: text !== ""
             renderType: Text.NativeRendering
         }
@@ -66,7 +66,7 @@ MenuItem {
         Text {
             anchors.centerIn: parent
             text: "✓"
-            color: control.highlighted ? "#FFFFFF" : Theme.primaryText
+            color: control.highlighted ? Theme.selectionTextActive : Theme.selectionTextInactive
             font.pixelSize: 11
             renderType: Text.NativeRendering
         }
@@ -78,7 +78,7 @@ MenuItem {
         visible: control.subMenu
         text: "▶"
         font.pixelSize: 9
-        color: control.highlighted ? "#FFFFFF" : Theme.primaryText
+        color: control.highlighted ? Theme.selectionTextActive : Theme.selectionTextInactive
         renderType: Text.NativeRendering
     }
 

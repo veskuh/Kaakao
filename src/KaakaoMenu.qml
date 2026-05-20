@@ -18,7 +18,7 @@ Menu {
     implicitHeight: Math.max(implicitBackgroundHeight, contentHeight + topPadding + bottomPadding)
 
     margins: 0
-    padding: 1 // Tight macOS border padding
+    padding: 4
 
     delegate: KaakaoMenuItem { }
 
@@ -29,7 +29,7 @@ Menu {
         opacity: 0.98
         border.color: Theme.sidebarBorder
         border.width: 1
-        radius: 5
+        radius: Theme.radiusMenu
 
         layer.enabled: true
         layer.effect: DropShadow {

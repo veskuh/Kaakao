@@ -74,7 +74,7 @@ Rectangle {
                 Text {
                     text: model.name
                     font: Theme.defaultFont
-                    color: listView.currentIndex === index ? "#FFFFFF" : Theme.primaryText
+                    color: listView.currentIndex === index ? Theme.selectionTextActive : Theme.primaryText
                     Layout.fillWidth: true
                     Layout.alignment: Qt.AlignVCenter
                     verticalAlignment: Text.AlignVCenter

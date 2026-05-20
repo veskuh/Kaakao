@@ -25,13 +25,13 @@ ComboBox {
 
     delegate: ItemDelegate {
         id: itemDelegate
-        width: control.width
+        width: ListView.view ? ListView.view.width : control.width
         height: 24
         padding: 0
         
         contentItem: Text {
             text: modelData
-            color: control.currentIndex === index ? "#FFFFFF" : Theme.primaryText
+            color: control.currentIndex === index ? Theme.selectionTextActive : Theme.primaryText
             font: control.font
             elide: Text.ElideRight
             verticalAlignment: Text.AlignVCenter
@@ -90,12 +90,11 @@ ComboBox {
             border.width: 1
             color: "transparent"
 
-            LinearGradient {
+            Rectangle {
                 anchors.fill: parent
                 anchors.margins: 1
-                source: parent
-                start: Qt.point(0, 0)
-                end: Qt.point(0, height)
+                radius: bgRect.radius - 0.5
+                clip: true
                 gradient: Gradient {
                     GradientStop { 
                         position: 0.0
@@ -149,7 +148,7 @@ ComboBox {
             opacity: 0.95
             border.color: Theme.sidebarBorder
             border.width: 1
-            radius: 6
+            radius: Theme.radiusPopup
             
             // Subtle shadow for the popup
             layer.enabled: true

@@ -28,7 +28,7 @@ Rectangle {
             case "error": return Theme.colorError;
             case "warning": return Theme.colorWarning;
             case "info": return Theme.colorInfo;
-            default: return "#aaaaaa";
+            default: return Theme.colorNone;
         }
     }
     border.color: Qt.darker(color, 1.4)

@@ -57,15 +57,15 @@ Item {
             z: 2
             
             gradient: Gradient {
-                GradientStop { position: 0.0; color: Theme.isDarkMode ? "#454545" : "#F6F6F6" }
-                GradientStop { position: 1.0; color: Theme.isDarkMode ? "#3C3C3C" : "#E8E8E8" }
+                GradientStop { position: 0.0; color: Theme.headerBackgroundGradTop }
+                GradientStop { position: 1.0; color: Theme.headerBackgroundGradBottom }
             }
 
             Rectangle {
                 anchors.bottom: parent.bottom
                 width: parent.width
                 height: 1
-                color: Theme.isDarkMode ? "#121212" : "#B0B0B0"
+                color: Theme.headerBorder
             }
 
             Row {
@@ -127,7 +127,7 @@ Item {
                             anchors.right: parent.right
                             height: parent.height
                             width: 1
-                            color: Theme.isDarkMode ? "#2A2A2A" : "#C4C4C4"
+                            color: Theme.headerDivider
                         }
 
                         // Resize Handle

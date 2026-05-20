@@ -28,7 +28,7 @@ Button {
     contentItem: Label {
         text: control.text
         font: control.font
-        color: control.highlighted ? "#FFFFFF" : Theme.primaryText
+        color: control.highlighted ? Theme.accentButtonText : Theme.primaryText
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
         elide: Text.ElideRight
@@ -42,7 +42,7 @@ Button {
         radius: Theme.radiusStandard
         
         // Border and base color
-        color: Theme.isDarkMode ? "#252525" : "#FFFFFF" // Fallback color
+        color: Theme.contentBackground
         border.color: control.highlighted ? Theme.accentBorder : Theme.buttonBorder
         border.width: 1
 

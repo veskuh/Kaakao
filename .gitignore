@@ -43,6 +43,7 @@ _deps/
 # IDEs
 .vscode/
 .idea/
+.antigravitycli
 
 # Documentation
 docs/html/

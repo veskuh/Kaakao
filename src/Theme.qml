@@ -196,10 +196,41 @@ QtObject {
     */
     readonly property real paddingSmall: 8
 
-    /*! \qmlproperty real Theme::layoutSpacing
-        The standard spacing (16px) between related layout elements.
-    */
     readonly property real layoutSpacing: 16
+
+    // Selection Colors
+    readonly property color selectionBackgroundActive: primaryAccent
+    readonly property color selectionBackgroundInactive: isDarkMode ? "#444444" : "#DCDCDC"
+    readonly property color selectionTextActive: "#FFFFFF"
+    readonly property color selectionTextInactive: primaryText
+
+    // Alternating Row Background Colors
+    readonly property color alternatingRowBackgroundEven: isDarkMode ? "#252525" : "#FFFFFF"
+    readonly property color alternatingRowBackgroundOdd: isDarkMode ? "#2E2E2E" : "#F4F5F5"
+
+    // Component Geometry (Radii)
+    readonly property real radiusMenu: 5
+    readonly property real radiusPopup: 6
+
+    // Table Header Colors
+    readonly property color headerBackgroundGradTop: isDarkMode ? "#454545" : "#F6F6F6"
+    readonly property color headerBackgroundGradBottom: isDarkMode ? "#3C3C3C" : "#E8E8E8"
+    readonly property color headerBorder: isDarkMode ? "#121212" : "#B0B0B0"
+    readonly property color headerDivider: isDarkMode ? "#2A2A2A" : "#C4C4C4"
+
+    // Segmented Control Colors
+    readonly property color segmentedSelectionGradTop: isDarkMode ? "#555555" : "#FFFFFF"
+    readonly property color segmentedSelectionGradBottom: isDarkMode ? "#333333" : "#EEEEEE"
+
+    // Search Field Clear Button Colors
+    readonly property color searchFieldClearButton: isDarkMode ? "#666666" : "#BBBBBB"
+    readonly property color searchFieldClearButtonPressed: isDarkMode ? "#888888" : "#888888"
+
+    // Accent Button/Label Colors
+    readonly property color accentButtonText: "#FFFFFF"
+
+    // Misc Status Colors
+    readonly property color colorNone: "#AAAAAA"
 
     // Typography
     /*! \qmlproperty font Theme::defaultFont

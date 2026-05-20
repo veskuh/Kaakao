@@ -85,7 +85,7 @@ TextField {
         Rectangle {
             anchors.fill: parent
             radius: width / 2
-            color: clearMouse.containsPress ? "#888" : "#BBB"
+            color: clearMouse.containsPress ? Theme.searchFieldClearButtonPressed : Theme.searchFieldClearButton
             opacity: 0.6
 
             Text {

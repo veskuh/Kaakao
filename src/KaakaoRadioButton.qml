@@ -39,12 +39,11 @@ RadioButton {
             border.width: 1
 
             // Gradient for "raised" look when unchecked
-            LinearGradient {
+            Rectangle {
                 anchors.fill: parent
                 anchors.margins: 1
                 visible: !control.checked
-                start: Qt.point(0, 0)
-                end: Qt.point(0, height)
+                radius: width / 2
                 gradient: Gradient {
                     GradientStop { position: 0.0; color: Theme.buttonGradTop }
                     GradientStop { position: 1.0; color: Theme.buttonGradBottom }

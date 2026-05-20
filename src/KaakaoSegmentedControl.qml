@@ -49,19 +49,18 @@ Control {
             radius: Theme.radiusSmall - 1
             z: 0
 
-            LinearGradient {
+            Rectangle {
                 anchors.fill: parent
                 anchors.margins: 1
-                start: Qt.point(0, 0)
-                end: Qt.point(0, height)
+                radius: parent.radius
                 gradient: Gradient {
                     GradientStop { 
                         position: 0.0
-                        color: Theme.isDarkMode ? "#555" : "#FFF" 
+                        color: Theme.segmentedSelectionGradTop
                     }
                     GradientStop { 
                         position: 1.0
-                        color: Theme.isDarkMode ? "#333" : "#EEE" 
+                        color: Theme.segmentedSelectionGradBottom
                     }
                 }
             }

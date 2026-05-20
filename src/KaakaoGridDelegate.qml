@@ -35,10 +35,10 @@ ItemDelegate {
         radius: Theme.radiusLarge
         color: {
             if (control.isSelected) {
-                // If the grid has focus, use Aqua Blue. Otherwise, use neutral gray.
+                // If the grid has focus, use Active Selection BG. Otherwise, use Inactive Selection BG.
                 if (control.GridView.view && control.GridView.view.activeFocus)
-                    return Theme.primaryAccent;
-                return Theme.isDarkMode ? "#444444" : "#DCDCDC";
+                    return Theme.selectionBackgroundActive;
+                return Theme.selectionBackgroundInactive;
             }
             return "transparent"
         }

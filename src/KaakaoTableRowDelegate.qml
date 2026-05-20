@@ -37,13 +37,10 @@ ItemDelegate {
         color: {
             if (control.isSelected) {
                 if (control.ListView.view && control.ListView.view.activeFocus)
-                    return Theme.primaryAccent;
-                return Theme.isDarkMode ? "#444444" : "#DCDCDC";
+                    return Theme.selectionBackgroundActive;
+                return Theme.selectionBackgroundInactive;
             }
-            if (Theme.isDarkMode)
-                return control.isEvenRow ? "#252525" : "#2E2E2E";
-            else
-                return control.isEvenRow ? "#FFFFFF" : "#F4F5F5";
+            return control.isEvenRow ? Theme.alternatingRowBackgroundEven : Theme.alternatingRowBackgroundOdd;
         }
     }
 
@@ -77,8 +74,8 @@ ItemDelegate {
                     elide: Text.ElideRight
                     renderType: Text.NativeRendering
                     color: (control.isSelected && control.ListView.view && control.ListView.view.activeFocus) 
-                           ? "#FFFFFF" 
-                           : Theme.primaryText
+                           ? Theme.selectionTextActive 
+                           : Theme.selectionTextInactive
                 }
 
                 // Vertical divider line (optional, Finder usually doesn't show them between data cells, 
@@ -87,7 +84,7 @@ ItemDelegate {
                     anchors.right: parent.right
                     height: parent.height
                     width: 1
-                    color: Theme.isDarkMode ? "#1A1A1A" : "#E0E0E0"
+                    color: Theme.headerDivider
                     visible: index < control.columns.length - 1
                 }
             }

@@ -59,23 +59,19 @@ ItemDelegate {
         }
     }
 
-    // Background rendering handles zebra stripes and selection state
     background: Rectangle {
         anchors.fill: parent
 
         color: {
             if (control.isSelected) {
-                // If the list has focus, use Aqua Blue. Otherwise, use neutral gray.
+                // If the list has focus, use Active Selection BG. Otherwise, use Inactive Selection BG.
                 if (control.ListView.view && control.ListView.view.activeFocus)
-                    return Theme.primaryAccent;
-                return Theme.isDarkMode ? "#444444" : "#DCDCDC";
+                    return Theme.selectionBackgroundActive;
+                return Theme.selectionBackgroundInactive;
             }
             
             // Zebra striping for unselected rows
-            if (Theme.isDarkMode)
-                return control.isEvenRow ? "#252525" : "#2E2E2E";
-            else
-                return control.isEvenRow ? "#FFFFFF" : "#F4F5F5";
+            return control.isEvenRow ? Theme.alternatingRowBackgroundEven : Theme.alternatingRowBackgroundOdd;
         }
     }
 
@@ -105,8 +101,8 @@ ItemDelegate {
                 renderType: Text.NativeRendering
                 elide: Text.ElideRight
                 color: (control.isSelected && control.ListView.view && control.ListView.view.activeFocus) 
-                       ? "#FFFFFF" 
-                       : Theme.primaryText
+                       ? Theme.selectionTextActive 
+                       : Theme.selectionTextInactive
             }
 
             Label {
@@ -119,8 +115,8 @@ ItemDelegate {
                 renderType: Text.NativeRendering
                 elide: Text.ElideRight
                 color: (control.isSelected && control.ListView.view && control.ListView.view.activeFocus) 
-                       ? Qt.rgba(1,1,1,0.7) 
-                       : Qt.rgba(Theme.primaryText.r, Theme.primaryText.g, Theme.primaryText.b, 0.6)
+                       ? Qt.rgba(Theme.selectionTextActive.r, Theme.selectionTextActive.g, Theme.selectionTextActive.b, 0.7) 
+                       : Qt.rgba(Theme.selectionTextInactive.r, Theme.selectionTextInactive.g, Theme.selectionTextInactive.b, 0.6)
             }
         }
 
@@ -134,8 +130,8 @@ ItemDelegate {
             font.family: Theme.defaultFont.family
             renderType: Text.NativeRendering
             color: (control.isSelected && control.ListView.view && control.ListView.view.activeFocus) 
-                   ? Qt.rgba(1,1,1,0.7) 
-                   : Qt.rgba(Theme.primaryText.r, Theme.primaryText.g, Theme.primaryText.b, 0.6)
+                   ? Qt.rgba(Theme.selectionTextActive.r, Theme.selectionTextActive.g, Theme.selectionTextActive.b, 0.7) 
+                   : Qt.rgba(Theme.selectionTextInactive.r, Theme.selectionTextInactive.g, Theme.selectionTextInactive.b, 0.6)
         }
     }
 }
