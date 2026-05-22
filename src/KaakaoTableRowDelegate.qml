@@ -57,6 +57,7 @@ ItemDelegate {
                 clip: true
 
                 Label {
+                    id: cellLabel
                     anchors.fill: parent
                     anchors.leftMargin: 8
                     anchors.rightMargin: 8
@@ -76,6 +77,27 @@ ItemDelegate {
                     color: (control.isSelected && control.ListView.view && control.ListView.view.activeFocus) 
                            ? Theme.selectionTextActive 
                            : Theme.selectionTextInactive
+
+                    ToolTip.visible: cellMouse.containsMouse && ToolTip.text !== ""
+                    ToolTip.delay: 500
+                    ToolTip.text: {
+                        let roleName = modelData.role
+                        let tooltipRole = roleName + "Tooltip"
+                        if (control.rowData !== undefined && control.rowData[tooltipRole] !== undefined)
+                            return control.rowData[tooltipRole]
+                        if (model[tooltipRole] !== undefined)
+                            return model[tooltipRole]
+                        if (cellLabel.truncated)
+                            return cellLabel.text
+                        return ""
+                    }
+
+                    MouseArea {
+                        id: cellMouse
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        acceptedButtons: Qt.NoButton
+                    }
                 }
 
                 // Vertical divider line (optional, Finder usually doesn't show them between data cells, 
