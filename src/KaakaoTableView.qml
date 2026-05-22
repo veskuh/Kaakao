@@ -168,13 +168,17 @@ Item {
             height: parent.height - headerArea.height
             clip: true
             focus: true
-            interactive: false
+            interactive: true
             boundsBehavior: Flickable.StopAtBounds
             keyNavigationEnabled: true
             highlightMoveDuration: 0
 
             delegate: KaakaoTableRowDelegate {
                 columns: control.columns
+            }
+
+            ScrollBar.vertical: ScrollBar {
+                policy: ScrollBar.AsNeeded
             }
 
             // Inner top shadow
