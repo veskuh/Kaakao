@@ -46,6 +46,7 @@ qt_add_qml_module(Kaakao
         KaakaoMenuSeparator.qml
         KaakaoTabBar.qml
         KaakaoTabButton.qml
+        KaakaoStepper.qml
 )
 
 target_link_libraries(Kaakao PRIVATE Qt6::Core5Compat Qt6::ShaderTools)
