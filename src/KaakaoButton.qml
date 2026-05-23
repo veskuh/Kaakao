@@ -24,6 +24,7 @@ Button {
     rightPadding: 12
 
     font: Theme.defaultFont
+    opacity: enabled ? 1.0 : Theme.disabledOpacity
 
     contentItem: Label {
         text: control.text
