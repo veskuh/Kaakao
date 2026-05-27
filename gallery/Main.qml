@@ -485,6 +485,28 @@ KaakaoWindow {
                             KaakaoRadioButton { text: "Choice 1"; checked: true }
                             KaakaoRadioButton { text: "Choice 2" }
                         }
+
+                        KaakaoLabel { 
+                            text: "Numeric Stepper:" 
+                            Layout.alignment: Qt.AlignRight
+                        }
+                        RowLayout {
+                            spacing: 12
+                            Layout.alignment: Qt.AlignLeft
+                            KaakaoStepper {
+                                from: 0
+                                to: 100
+                                value: 42
+                                stepSize: 1
+                            }
+                            KaakaoStepper {
+                                from: 0
+                                to: 10
+                                value: 5
+                                stepSize: 1
+                                enabled: false
+                            }
+                        }
                     }
 
                     Item { Layout.preferredHeight: 40 } // Bottom Spacer
