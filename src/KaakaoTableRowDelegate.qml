@@ -52,9 +52,69 @@ ItemDelegate {
         Repeater {
             model: control.columns
             delegate: Item {
+                id: cellItem
                 width: modelData.width
                 height: control.height
                 clip: true
+
+                readonly property string cellValue: {
+                    let roleName = modelData.role
+                    if (control.rowData !== undefined && control.rowData[roleName] !== undefined)
+                        return control.rowData[roleName]
+                    if (model[roleName] !== undefined)
+                        return model[roleName]
+                    return ""
+                }
+
+                ToolTip.visible: cellMouse.containsMouse && ToolTip.text !== ""
+                ToolTip.text: {
+                    if (modelData.showAsIndicator) {
+                        return cellItem.cellValue
+                    }
+                    let roleName = modelData.role
+                    let tooltipRole = roleName + "Tooltip"
+                    if (control.rowData !== undefined && control.rowData[tooltipRole] !== undefined)
+                        return control.rowData[tooltipRole]
+                    if (model[tooltipRole] !== undefined)
+                        return model[tooltipRole]
+                    if (cellLabel.truncated)
+                        return cellLabel.text
+                    return ""
+                }
+
+                MouseArea {
+                    id: cellMouse
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    acceptedButtons: Qt.NoButton
+                }
+
+                // Custom Status Indicator
+                Rectangle {
+                    anchors.centerIn: parent
+                    width: 10
+                    height: 10
+                    radius: 5
+                    visible: modelData.showAsIndicator
+                    color: {
+                        let colorRole = modelData.indicatorColorRole
+                        if (colorRole && control.rowData !== undefined && control.rowData[colorRole] !== undefined) {
+                            let valColor = control.rowData[colorRole]
+                            if (valColor === "green") return Theme.colorSuccess || "#28a745"
+                            if (valColor === "red") return Theme.colorError || "#ff3b30"
+                            if (valColor === "orange") return "#ff9500"
+                            if (valColor === "purple") return "#af52de"
+                            return valColor
+                        }
+                        // Fallback to value if it's already a color string/HEX
+                        let val = cellItem.cellValue
+                        if (val.startsWith("#") || val === "red" || val === "green" || val === "blue" || val === "orange" || val === "yellow" || val === "gray" || val === "purple")
+                            return val
+                        return "gray"
+                    }
+                    border.width: 1
+                    border.color: Theme.isDarkMode ? "rgba(255,255,255,0.2)" : "rgba(0,0,0,0.15)"
+                }
 
                 Label {
                     id: cellLabel
@@ -62,42 +122,14 @@ ItemDelegate {
                     anchors.leftMargin: 8
                     anchors.rightMargin: 8
                     verticalAlignment: Text.AlignVCenter
-                    text: {
-                        let roleName = modelData.role
-                        // Try rowData (JS model) then try model (ListModel roles available via context)
-                        if (control.rowData !== undefined && control.rowData[roleName] !== undefined)
-                            return control.rowData[roleName]
-                        if (model[roleName] !== undefined)
-                            return model[roleName]
-                        return ""
-                    }
+                    visible: !modelData.showAsIndicator
+                    text: cellItem.cellValue
                     font: Theme.defaultFont
-                    elide: Text.ElideRight
+                    elide: modelData.elide !== undefined ? modelData.elide : Text.ElideRight
                     renderType: Text.NativeRendering
                     color: (control.isSelected && control.ListView.view && control.ListView.view.activeFocus) 
                            ? Theme.selectionTextActive 
                            : Theme.selectionTextInactive
-
-                    ToolTip.visible: cellMouse.containsMouse && ToolTip.text !== ""
-                    ToolTip.delay: 500
-                    ToolTip.text: {
-                        let roleName = modelData.role
-                        let tooltipRole = roleName + "Tooltip"
-                        if (control.rowData !== undefined && control.rowData[tooltipRole] !== undefined)
-                            return control.rowData[tooltipRole]
-                        if (model[tooltipRole] !== undefined)
-                            return model[tooltipRole]
-                        if (cellLabel.truncated)
-                            return cellLabel.text
-                        return ""
-                    }
-
-                    MouseArea {
-                        id: cellMouse
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        acceptedButtons: Qt.NoButton
-                    }
                 }
 
                 // Vertical divider line (optional, Finder usually doesn't show them between data cells, 

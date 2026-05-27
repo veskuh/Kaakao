@@ -36,6 +36,21 @@ QtObject {
     */
     property bool sortable: true
 
+    /*! \qmlproperty int KaakaoTableColumn::elide
+        The text elide mode: Text.ElideNone, Text.ElideLeft, Text.ElideMiddle, Text.ElideRight.
+    */
+    property int elide: Text.ElideRight
+
+    /*! \qmlproperty bool KaakaoTableColumn::showAsIndicator
+        Whether the column cells should be displayed as a colored status dot instead of text.
+    */
+    property bool showAsIndicator: false
+
+    /*! \qmlproperty string KaakaoTableColumn::indicatorColorRole
+        The model role name used to retrieve the indicator's color (e.g. "green", "red", HEX).
+    */
+    property string indicatorColorRole: ""
+
     /*! \qmlproperty int KaakaoTableColumn::sortOrder
         The current sort order: Qt.AscendingOrder, Qt.DescendingOrder, or -1 for none.
     */
