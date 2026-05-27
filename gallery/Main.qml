@@ -126,9 +126,15 @@ KaakaoWindow {
                             Layout.alignment: Qt.AlignRight
                         }
                         KaakaoButton {
+                            id: pushButton
                             text: "Push Me"
                             Layout.alignment: Qt.AlignLeft
                             onClicked: console.log("Standard button clicked")
+
+                            KaakaoToolTip {
+                                visible: pushButton.hovered
+                                text: "Click to perform a standard action"
+                            }
                         }
 
                         KaakaoLabel { 
@@ -136,9 +142,15 @@ KaakaoWindow {
                             Layout.alignment: Qt.AlignRight
                         }
                         KaakaoButton {
+                            id: focusedButton
                             text: "I am Focused"
                             focus: true
                             Layout.alignment: Qt.AlignLeft
+
+                            KaakaoToolTip {
+                                visible: focusedButton.hovered
+                                text: "This button has keyboard focus"
+                            }
                         }
 
                         KaakaoLabel { 
