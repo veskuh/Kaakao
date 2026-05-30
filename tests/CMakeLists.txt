@@ -1,5 +1,5 @@
 # Copy QML files to build directory for execution
-file(COPY tst_theme.qml tst_kaakaobutton.qml tst_window.qml tst_label.qml tst_dialog.qml tst_about.qml tst_textfield.qml tst_controls.qml tst_toolbar.qml tst_sidebar.qml tst_indicators.qml tst_searchfield.qml tst_disclosure.qml tst_listview.qml tst_tableview.qml tst_small_components.qml tst_splitview.qml tst_gridview.qml tst_menu.qml tst_tabbar.qml tst_kaakaostepper.qml tst_untested_components.qml tst_kaakaotooltip.qml tst_controlbutton.qml DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
+file(COPY tst_theme.qml tst_kaakaobutton.qml tst_window.qml tst_label.qml tst_dialog.qml tst_about.qml tst_textfield.qml tst_controls.qml tst_toolbar.qml tst_sidebar.qml tst_indicators.qml tst_searchfield.qml tst_disclosure.qml tst_listview.qml tst_tableview.qml tst_small_components.qml tst_splitview.qml tst_gridview.qml tst_menu.qml tst_tabbar.qml tst_kaakaostepper.qml tst_untested_components.qml tst_kaakaotooltip.qml tst_controlbutton.qml tst_scopebar.qml tst_sheet.qml DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
 
 # Menu Test
 qt_add_executable(tst_menu main.cpp)
@@ -169,4 +169,19 @@ target_link_libraries(tst_controlbutton PRIVATE Qt6::Core Qt6::Gui Qt6::Qml Qt6:
 target_compile_definitions(tst_controlbutton PRIVATE QUICK_TEST_SOURCE_DIR="${CMAKE_CURRENT_BINARY_DIR}")
 add_test(NAME tst_controlbutton COMMAND tst_controlbutton -input tst_controlbutton.qml)
 set_tests_properties(tst_controlbutton PROPERTIES ENVIRONMENT "QML_IMPORT_PATH=${CMAKE_BINARY_DIR}/qml")
+
+# ScopeBar Test
+qt_add_executable(tst_scopebar main.cpp)
+target_link_libraries(tst_scopebar PRIVATE Qt6::Core Qt6::Gui Qt6::Qml Qt6::Quick Qt6::Test Qt6::QuickTest Kaakao)
+target_compile_definitions(tst_scopebar PRIVATE QUICK_TEST_SOURCE_DIR="${CMAKE_CURRENT_BINARY_DIR}")
+add_test(NAME tst_scopebar COMMAND tst_scopebar -input tst_scopebar.qml)
+set_tests_properties(tst_scopebar PROPERTIES ENVIRONMENT "QML_IMPORT_PATH=${CMAKE_BINARY_DIR}/qml")
+
+# Sheet Test
+qt_add_executable(tst_sheet main.cpp)
+target_link_libraries(tst_sheet PRIVATE Qt6::Core Qt6::Gui Qt6::Qml Qt6::Quick Qt6::Test Qt6::QuickTest Kaakao)
+target_compile_definitions(tst_sheet PRIVATE QUICK_TEST_SOURCE_DIR="${CMAKE_CURRENT_BINARY_DIR}")
+add_test(NAME tst_sheet COMMAND tst_sheet -input tst_sheet.qml)
+set_tests_properties(tst_sheet PROPERTIES ENVIRONMENT "QML_IMPORT_PATH=${CMAKE_BINARY_DIR}/qml")
+
 

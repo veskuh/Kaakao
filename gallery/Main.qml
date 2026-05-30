@@ -74,6 +74,15 @@ KaakaoWindow {
         copyright: "© 2026 Kaakao Contributors"
     }
 
+    KaakaoSheet {
+        id: demoSheet
+        width: 420
+        height: 180
+        title: "macOS Sheet Dialog"
+        text: "This modal sheet slides down from the top header of the window, rendering a clean, rounded bottom dialog in classic Yosemite-Catalina style. Dismiss it by clicking OK."
+        symbol: "ℹ️"
+    }
+
     KaakaoSplitView {
         anchors.fill: parent
         orientation: Qt.Horizontal
@@ -280,10 +289,36 @@ KaakaoWindow {
                             Item { implicitWidth: 10 }
 
                             // Traffic lights (Active)
-                            RowLayout {
-                                id: activeTrafficLights
-                                spacing: 6
-                                property bool isHovered: false
+                            Item {
+                                implicitWidth: activeTrafficLights.implicitWidth
+                                implicitHeight: activeTrafficLights.implicitHeight
+                                Layout.alignment: Qt.AlignVCenter
+
+                                RowLayout {
+                                    id: activeTrafficLights
+                                    anchors.fill: parent
+                                    spacing: 6
+                                    property bool isHovered: false
+                                    
+                                    KaakaoControlButton {
+                                        controlStyle: KaakaoControlButton.ControlStyle.Window
+                                        controlType: KaakaoControlButton.ControlType.Close
+                                        groupHovered: activeTrafficLights.isHovered
+                                        onClicked: console.log("Window Close clicked")
+                                    }
+                                    KaakaoControlButton {
+                                        controlStyle: KaakaoControlButton.ControlStyle.Window
+                                        controlType: KaakaoControlButton.ControlType.Minimize
+                                        groupHovered: activeTrafficLights.isHovered
+                                        onClicked: console.log("Window Minimize clicked")
+                                    }
+                                    KaakaoControlButton {
+                                        controlStyle: KaakaoControlButton.ControlStyle.Window
+                                        controlType: KaakaoControlButton.ControlType.Zoom
+                                        groupHovered: activeTrafficLights.isHovered
+                                        onClicked: console.log("Window Zoom clicked")
+                                    }
+                                }
 
                                 MouseArea {
                                     anchors.fill: parent
@@ -291,25 +326,6 @@ KaakaoWindow {
                                     acceptedButtons: Qt.NoButton
                                     onEntered: activeTrafficLights.isHovered = true
                                     onExited: activeTrafficLights.isHovered = false
-                                }
-                                
-                                KaakaoControlButton {
-                                    controlStyle: KaakaoControlButton.ControlStyle.Window
-                                    controlType: KaakaoControlButton.ControlType.Close
-                                    groupHovered: activeTrafficLights.isHovered
-                                    onClicked: console.log("Window Close clicked")
-                                }
-                                KaakaoControlButton {
-                                    controlStyle: KaakaoControlButton.ControlStyle.Window
-                                    controlType: KaakaoControlButton.ControlType.Minimize
-                                    groupHovered: activeTrafficLights.isHovered
-                                    onClicked: console.log("Window Minimize clicked")
-                                }
-                                KaakaoControlButton {
-                                    controlStyle: KaakaoControlButton.ControlStyle.Window
-                                    controlType: KaakaoControlButton.ControlType.Zoom
-                                    groupHovered: activeTrafficLights.isHovered
-                                    onClicked: console.log("Window Zoom clicked")
                                 }
                             }
 
@@ -345,6 +361,31 @@ KaakaoWindow {
                                 text: "(Inactive)"
                                 role: KaakaoLabel.Role.Small
                             }
+                        }
+
+                        KaakaoLabel { 
+                            text: "Scope Bar Filter:" 
+                            Layout.alignment: Qt.AlignRight
+                        }
+                        ColumnLayout {
+                            spacing: 4
+                            Layout.alignment: Qt.AlignLeft
+                            
+                            KaakaoScopeBar {
+                                label: "Filter:"
+                                model: ["All Files", "Images", "Documents", "PDFs"]
+                                onFilterSelected: (index, name) => console.log("Scope selected:", index, name)
+                            }
+                        }
+
+                        KaakaoLabel { 
+                            text: "Sheet Dialog:" 
+                            Layout.alignment: Qt.AlignRight
+                        }
+                        KaakaoButton {
+                            text: "Trigger Slide-down Sheet"
+                            Layout.alignment: Qt.AlignLeft
+                            onClicked: demoSheet.open()
                         }
                     }
 
