@@ -241,12 +241,109 @@ KaakaoWindow {
                                 radius: 4
                                 border.color: Theme.buttonBorder
                                 border.width: 1
-                                
                                 KaakaoLabel {
                                     anchors.centerIn: parent
                                     text: "Hidden Content"
                                     role: KaakaoLabel.Role.Small
                                 }
+                            }
+                        }
+
+                        KaakaoLabel { 
+                            text: "Control Buttons:" 
+                            Layout.alignment: Qt.AlignRight
+                        }
+                        RowLayout {
+                            spacing: 12
+                            Layout.alignment: Qt.AlignLeft
+
+                            // Inline Close Button
+                            KaakaoControlButton {
+                                controlStyle: KaakaoControlButton.ControlStyle.Inline
+                                controlType: KaakaoControlButton.ControlType.Close
+                                onClicked: console.log("Inline Close clicked")
+                                KaakaoToolTip {
+                                    text: "Inline Close (Tabs/Panels)"
+                                }
+                            }
+
+                            // Help Button
+                            KaakaoControlButton {
+                                controlStyle: KaakaoControlButton.ControlStyle.Help
+                                onClicked: console.log("Help clicked")
+                                KaakaoToolTip {
+                                    text: "Help Button"
+                                }
+                            }
+
+                            // Spacer
+                            Item { implicitWidth: 10 }
+
+                            // Traffic lights (Active)
+                            RowLayout {
+                                id: activeTrafficLights
+                                spacing: 6
+                                property bool isHovered: false
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    hoverEnabled: true
+                                    acceptedButtons: Qt.NoButton
+                                    onEntered: activeTrafficLights.isHovered = true
+                                    onExited: activeTrafficLights.isHovered = false
+                                }
+                                
+                                KaakaoControlButton {
+                                    controlStyle: KaakaoControlButton.ControlStyle.Window
+                                    controlType: KaakaoControlButton.ControlType.Close
+                                    groupHovered: activeTrafficLights.isHovered
+                                    onClicked: console.log("Window Close clicked")
+                                }
+                                KaakaoControlButton {
+                                    controlStyle: KaakaoControlButton.ControlStyle.Window
+                                    controlType: KaakaoControlButton.ControlType.Minimize
+                                    groupHovered: activeTrafficLights.isHovered
+                                    onClicked: console.log("Window Minimize clicked")
+                                }
+                                KaakaoControlButton {
+                                    controlStyle: KaakaoControlButton.ControlStyle.Window
+                                    controlType: KaakaoControlButton.ControlType.Zoom
+                                    groupHovered: activeTrafficLights.isHovered
+                                    onClicked: console.log("Window Zoom clicked")
+                                }
+                            }
+
+                            KaakaoLabel {
+                                text: "(Active)"
+                                role: KaakaoLabel.Role.Small
+                            }
+
+                            // Spacer
+                            Item { implicitWidth: 10 }
+
+                            // Traffic lights (Inactive)
+                            RowLayout {
+                                spacing: 6
+                                KaakaoControlButton {
+                                    controlStyle: KaakaoControlButton.ControlStyle.Window
+                                    controlType: KaakaoControlButton.ControlType.Close
+                                    active: false
+                                }
+                                KaakaoControlButton {
+                                    controlStyle: KaakaoControlButton.ControlStyle.Window
+                                    controlType: KaakaoControlButton.ControlType.Minimize
+                                    active: false
+                                }
+                                KaakaoControlButton {
+                                    controlStyle: KaakaoControlButton.ControlStyle.Window
+                                    controlType: KaakaoControlButton.ControlType.Zoom
+                                    active: false
+                                }
+                            }
+
+                            KaakaoLabel {
+                                text: "(Inactive)"
+                                role: KaakaoLabel.Role.Small
                             }
                         }
                     }
