@@ -26,16 +26,14 @@ TestCase {
         // Activate the overlay
         overlay.active = true
         // Let the 200ms opacity transition behavior finish
-        wait(250)
+        tryCompare(overlay, "opacity", 1.0)
         compare(overlay.active, true, "Overlay active state should be true")
-        compare(overlay.opacity, 1.0, "Overlay opacity should be 1.0 when active")
 
         // Deactivate the overlay
         overlay.active = false
         // Let the 200ms opacity transition behavior finish
-        wait(250)
+        tryCompare(overlay, "opacity", 0.0)
         compare(overlay.active, false, "Overlay active state should be false")
-        compare(overlay.opacity, 0.0, "Overlay opacity should be 0.0 when inactive")
     }
 
     // 2. KaakaoPathControl Component
@@ -169,16 +167,14 @@ TestCase {
         // Force focus on the parent container
         container.focus = true
         // Let the 80ms opacity transition behavior finish
-        wait(120)
+        tryCompare(ring, "opacity", 0.4)
         compare(ring.active, true, "FocusRing should activate when target gets focus")
-        compare(ring.opacity, 0.4, "FocusRing opacity should increase to 0.4 when active")
 
         // Unfocus target
         container.focus = false
         // Let the 80ms opacity transition behavior finish
-        wait(120)
+        tryCompare(ring, "opacity", 0.0)
         compare(ring.active, false, "FocusRing should deactivate when target loses focus")
-        compare(ring.opacity, 0.0, "FocusRing opacity should return to 0.0 when inactive")
 
         // Change ring settings
         ring.focusRadius = 15
