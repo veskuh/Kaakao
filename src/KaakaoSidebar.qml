@@ -67,6 +67,7 @@ Rectangle {
                     text: model.icon || ""
                     font.pixelSize: 14
                     visible: text !== ""
+                    color: model.iconColor !== undefined ? model.iconColor : (listView.currentIndex === index ? Theme.selectionTextActive : Theme.primaryText)
                     Layout.alignment: Qt.AlignVCenter
                     verticalAlignment: Text.AlignVCenter
                 }
