@@ -20,6 +20,8 @@ TextField {
     selectionColor: Theme.primaryAccent
     selectedTextColor: "white"
     padding: 6
+    topPadding: 2
+    bottomPadding: 2
     leftPadding: 8
     rightPadding: 8
 
