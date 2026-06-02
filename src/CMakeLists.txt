@@ -3,6 +3,7 @@ set_source_files_properties(Theme.qml PROPERTIES QT_QML_SINGLETON_TYPE TRUE)
 qt_add_qml_module(Kaakao
     URI Kaakao
     VERSION 1.0
+    NO_CACHEGEN
     RESOURCE_PREFIX "/qt/qml"
     DEPENDENCIES Qt5Compat.GraphicalEffects
     QML_FILES
