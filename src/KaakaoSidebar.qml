@@ -30,6 +30,7 @@ Rectangle {
     property real sidebarWidth: 200
 
     signal contextMenu(int index, var globalPos)
+    signal doubleClicked(int index)
 
     implicitWidth: collapsed ? 0 : sidebarWidth
     Behavior on implicitWidth { NumberAnimation { duration: 250; easing.type: Easing.InOutQuad } }
@@ -96,13 +97,20 @@ Rectangle {
                 }
             }
             
-            onClicked: listView.currentIndex = index
-
             MouseArea {
                 anchors.fill: parent
-                acceptedButtons: Qt.RightButton
+                acceptedButtons: Qt.LeftButton | Qt.RightButton
                 onClicked: (mouse) => {
-                    control.contextMenu(index, mapToItem(null, mouse.x, mouse.y))
+                    if (mouse.button === Qt.LeftButton) {
+                        listView.currentIndex = index
+                    } else if (mouse.button === Qt.RightButton) {
+                        control.contextMenu(index, mapToItem(null, mouse.x, mouse.y))
+                    }
+                }
+                onDoubleClicked: (mouse) => {
+                    if (mouse.button === Qt.LeftButton) {
+                        control.doubleClicked(index)
+                    }
                 }
             }
         }
