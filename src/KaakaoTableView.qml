@@ -102,7 +102,7 @@ Item {
                         Label {
                             anchors.fill: parent
                             anchors.leftMargin: 8
-                            anchors.rightMargin: 16
+                            anchors.rightMargin: 24
                             text: modelData.title
                             font.pixelSize: 11
                             font.weight: modelData.isSorted ? Font.Bold : Font.Normal
@@ -114,12 +114,21 @@ Item {
                         // Sort Indicator
                         Text {
                             anchors.right: parent.right
-                            anchors.rightMargin: 6
+                            anchors.rightMargin: 8
                             anchors.verticalCenter: parent.verticalCenter
                             visible: modelData.isSorted
-                            text: modelData.sortOrder === Qt.AscendingOrder ? "▴" : "▾"
+                            text: "▲"
                             font.pixelSize: 10
                             color: Theme.primaryText
+                            transformOrigin: Item.Center
+                            rotation: modelData.sortOrder === Qt.DescendingOrder ? 180 : 0
+
+                            Behavior on rotation {
+                                RotationAnimation {
+                                    duration: 150
+                                    direction: RotationAnimation.Shortest
+                                }
+                            }
                         }
 
                         // Vertical Divider

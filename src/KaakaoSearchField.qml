@@ -20,7 +20,7 @@ TextField {
     implicitWidth: 200
     implicitHeight: 22
     leftPadding: 26
-    rightPadding: (showClearButton && text.length > 0) ? 26 : 8
+    rightPadding: showClearButton ? 26 : 8
     topPadding: 2
     bottomPadding: 2
     
@@ -74,19 +74,30 @@ TextField {
 
     // Clear Button - Direct child of Control to be on top of contentItem
     Item {
+        id: clearButton
+        objectName: "clearButton"
         anchors.right: parent.right
         anchors.rightMargin: 6
         anchors.verticalCenter: parent.verticalCenter
         width: 14
         height: 14
-        visible: control.showClearButton && control.text.length > 0
         z: 2
+
+        opacity: (control.showClearButton && control.text.length > 0) ? (clearMouse.containsMouse ? 1.0 : 0.6) : 0.0
+        scale: (control.showClearButton && control.text.length > 0) ? (clearMouse.pressed ? 0.85 : 1.0) : 0.7
+        visible: opacity > 0.0
+
+        Behavior on opacity {
+            NumberAnimation { duration: 120 }
+        }
+        Behavior on scale {
+            NumberAnimation { duration: 120; easing.type: Easing.OutQuad }
+        }
 
         Rectangle {
             anchors.fill: parent
             radius: width / 2
             color: clearMouse.containsPress ? Theme.searchFieldClearButtonPressed : Theme.searchFieldClearButton
-            opacity: 0.6
 
             Text {
                 anchors.centerIn: parent
