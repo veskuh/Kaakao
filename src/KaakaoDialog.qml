@@ -15,6 +15,19 @@ Dialog {
     id: control
     implicitWidth: 360
     modal: true
+
+    x: {
+        let w = control.Window.window
+        if (w) return Math.round((w.width - width) / 2)
+        if (control.parent) return Math.round((control.parent.width - width) / 2)
+        return 0
+    }
+    y: {
+        let w = control.Window.window
+        if (w) return Math.round((w.height - height) / 2)
+        if (control.parent) return Math.round((control.parent.height - height) / 2)
+        return 0
+    }
     
     /*! \qmlproperty string KaakaoDialog::text
         The message text to display in the dialog.
