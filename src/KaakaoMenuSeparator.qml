@@ -10,8 +10,8 @@ import QtQuick.Controls.Basic
 MenuSeparator {
     id: control
 
-    implicitWidth: contentItem.implicitWidth + leftPadding + rightPadding
-    implicitHeight: 11
+    implicitWidth: (control.visible || (control.parent && !control.parent.visible)) ? (contentItem.implicitWidth + leftPadding + rightPadding) : 0
+    implicitHeight: (control.visible || (control.parent && !control.parent.visible)) ? 11 : 0
     
     width: ListView.view ? ListView.view.width : implicitWidth
 

@@ -18,8 +18,8 @@ MenuItem {
     */
     property string shortcut: ""
 
-    implicitWidth: Math.max(120, label.implicitWidth + 30 + (shortcutLabel.visible ? shortcutLabel.implicitWidth : 0) + leftPadding + rightPadding)
-    implicitHeight: 20
+    implicitWidth: (control.visible || (control.parent && !control.parent.visible)) ? Math.max(120, label.implicitWidth + 30 + (shortcutLabel.visible ? shortcutLabel.implicitWidth : 0) + leftPadding + rightPadding) : 0
+    implicitHeight: (control.visible || (control.parent && !control.parent.visible)) ? 20 : 0
     
     width: ListView.view ? ListView.view.width : implicitWidth
 
