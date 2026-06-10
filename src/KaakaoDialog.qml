@@ -17,15 +17,17 @@ Dialog {
     modal: true
 
     x: {
-        let w = control.Window.window
+        let parentItem = control.parent
+        let w = parentItem ? parentItem.Window.window : null
         if (w) return Math.round((w.width - width) / 2)
-        if (control.parent) return Math.round((control.parent.width - width) / 2)
+        if (parentItem) return Math.round((parentItem.width - width) / 2)
         return 0
     }
     y: {
-        let w = control.Window.window
+        let parentItem = control.parent
+        let w = parentItem ? parentItem.Window.window : null
         if (w) return Math.round((w.height - height) / 2)
-        if (control.parent) return Math.round((control.parent.height - height) / 2)
+        if (parentItem) return Math.round((parentItem.height - height) / 2)
         return 0
     }
     

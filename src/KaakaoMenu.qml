@@ -14,6 +14,9 @@ import Qt5Compat.GraphicalEffects
 Menu {
     id: control
 
+    x: control.parentMenu ? undefined : 0
+    y: control.parentMenu ? undefined : (parent ? parent.height + 2 : 0)
+
     implicitWidth: Math.max(150, contentItem.implicitWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(implicitBackgroundHeight, contentHeight + topPadding + bottomPadding)
 
