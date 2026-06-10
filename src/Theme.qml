@@ -54,6 +54,11 @@ QtObject {
     */
     readonly property color primaryText: isDarkMode ? "#DEDEDE" : "#222222"
     
+    /*! \qmlproperty color Theme::secondaryText
+        The color for secondary text content.
+    */
+    readonly property color secondaryText: isDarkMode ? "#8E8E8E" : "#6E6E6E"
+    
     /*! \qmlproperty real Theme::disabledOpacity
         The opacity level applied to disabled components.
     */
