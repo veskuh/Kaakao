@@ -52,20 +52,36 @@ ComboBox {
         width: 12
         height: 12
 
-        Column {
+        Canvas {
+            id: arrowCanvas
             anchors.centerIn: parent
-            spacing: -2
-            Text {
-                text: "▴"
-                font.pixelSize: 10
-                color: Theme.primaryText
-                opacity: 0.8
-            }
-            Text {
-                text: "▾"
-                font.pixelSize: 10
-                color: Theme.primaryText
-                opacity: 0.8
+            width: 8
+            height: 8
+            opacity: control.enabled ? 0.8 : 0.4
+
+            property color color: Theme.primaryText
+            onColorChanged: requestPaint()
+
+            onPaint: {
+                var ctx = getContext("2d")
+                ctx.reset()
+                ctx.fillStyle = color
+                
+                // Up Arrow
+                ctx.beginPath()
+                ctx.moveTo(4, 0)
+                ctx.lineTo(7, 3)
+                ctx.lineTo(1, 3)
+                ctx.closePath()
+                ctx.fill()
+                
+                // Down Arrow
+                ctx.beginPath()
+                ctx.moveTo(4, 8)
+                ctx.lineTo(7, 5)
+                ctx.lineTo(1, 5)
+                ctx.closePath()
+                ctx.fill()
             }
         }
     }

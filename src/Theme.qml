@@ -116,6 +116,7 @@ QtObject {
     */
     readonly property color buttonShadow: Qt.rgba(0,0,0, isDarkMode ? 0.3 : 0.05)
 
+
     // TextField Colors
     /*! \qmlproperty color Theme::textFieldBorder
         The border color for text input fields.

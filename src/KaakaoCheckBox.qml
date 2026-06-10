@@ -68,26 +68,32 @@ CheckBox {
             }
         }
 
-        // Checkmark (simple drawn path)
-        Item {
+        // Checkmark (smooth vector path)
+        Canvas {
+            id: checkmarkCanvas
             anchors.fill: parent
             visible: control.checked
+            antialiasing: true
 
-            Rectangle {
-                width: 5
-                height: 2
-                color: "white"
-                rotation: 45
-                x: 3
-                y: 7
+            onVisibleChanged: {
+                if (visible) {
+                    requestPaint()
+                }
             }
-            Rectangle {
-                width: 8
-                height: 2
-                color: "white"
-                rotation: -45
-                x: 5
-                y: 6
+
+            onPaint: {
+                var ctx = getContext("2d")
+                ctx.reset()
+                ctx.strokeStyle = "white"
+                ctx.lineWidth = 1.8
+                ctx.lineCap = "round"
+                ctx.lineJoin = "round"
+                
+                ctx.beginPath()
+                ctx.moveTo(3.5, 7.5)
+                ctx.lineTo(5.5, 9.5)
+                ctx.lineTo(10.5, 3.5)
+                ctx.stroke()
             }
         }
 
