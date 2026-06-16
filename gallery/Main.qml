@@ -385,13 +385,26 @@ KaakaoWindow {
                             Layout.alignment: Qt.AlignRight
                         }
                         ColumnLayout {
-                            spacing: 4
+                            spacing: 8
                             Layout.alignment: Qt.AlignLeft
                             
                             KaakaoScopeBar {
                                 label: "Filter:"
                                 model: ["All Files", "Images", "Documents", "PDFs"]
                                 onFilterSelected: (index, name) => console.log("Scope selected:", index, name)
+                            }
+
+                            KaakaoLabel {
+                                text: "Constrained (Overflow):"
+                                role: KaakaoLabel.Role.Small
+                                color: Theme.secondaryText
+                            }
+
+                            KaakaoScopeBar {
+                                label: "Date:"
+                                model: ["Today", "Yesterday", "Last Week", "Last Month", "Last Year", "All Time"]
+                                Layout.preferredWidth: 220
+                                onFilterSelected: (index, name) => console.log("Overflow scope selected:", index, name)
                             }
                         }
 

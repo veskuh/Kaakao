@@ -34,6 +34,24 @@ TestCase {
         // Manually clicking/activating the button should be tested, but property update is verified.
     }
 
+    function test_scopebar_overflow() {
+        let bar = createTemporaryObject(scopeBarComp, null)
+        verify(bar, "ScopeBar created successfully")
+        
+        // Large width - should have no overflow
+        bar.width = 500
+        bar.updateLayout()
+        compare(bar.hasOverflow, false, "Should not have overflow when wide enough")
+        compare(bar.overflowItems.length, 0, "Overflow list should be empty")
+
+        // Narrow width - should trigger overflow
+        bar.width = 120
+        bar.updateLayout()
+        compare(bar.hasOverflow, true, "Should have overflow when too narrow")
+        verify(bar.overflowItems.length > 0, "Overflow list should contain items")
+        compare(bar.overflowItems[0].text, "Images", "Second item should overflow when very narrow")
+    }
+
     Component {
         id: signalSpyComp
         SignalSpy {}
