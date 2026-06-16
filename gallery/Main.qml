@@ -302,6 +302,76 @@ KaakaoWindow {
                                 }
                             }
 
+                            // Add Button
+                            KaakaoControlButton {
+                                controlStyle: KaakaoControlButton.ControlStyle.Add
+                                onClicked: console.log("Add clicked")
+                                KaakaoToolTip {
+                                    text: "Add (Plus)"
+                                }
+                            }
+
+                            // Remove Button
+                            KaakaoControlButton {
+                                controlStyle: KaakaoControlButton.ControlStyle.Remove
+                                onClicked: console.log("Remove clicked")
+                                KaakaoToolTip {
+                                    text: "Remove (Minus)"
+                                }
+                            }
+
+                            // Gear Button
+                            KaakaoControlButton {
+                                controlStyle: KaakaoControlButton.ControlStyle.Gear
+                                onClicked: console.log("Gear clicked")
+                                KaakaoToolTip {
+                                    text: "Gear (Settings/Action)"
+                                }
+                            }
+
+                            // Info Button
+                            KaakaoControlButton {
+                                controlStyle: KaakaoControlButton.ControlStyle.Info
+                                onClicked: console.log("Info clicked")
+                                KaakaoToolTip {
+                                    text: "Info (Inspector)"
+                                }
+                            }
+
+                            // Refresh Button
+                            KaakaoControlButton {
+                                controlStyle: KaakaoControlButton.ControlStyle.Refresh
+                                onClicked: console.log("Refresh clicked")
+                                KaakaoToolTip {
+                                    text: "Refresh (Reload)"
+                                }
+                            }
+
+                            // Playback controls group
+                            KaakaoControlButton {
+                                controlStyle: KaakaoControlButton.ControlStyle.Previous
+                                onClicked: console.log("Previous clicked")
+                                KaakaoToolTip { text: "Previous Track" }
+                            }
+
+                            KaakaoControlButton {
+                                controlStyle: KaakaoControlButton.ControlStyle.Play
+                                onClicked: console.log("Play clicked")
+                                KaakaoToolTip { text: "Play" }
+                            }
+
+                            KaakaoControlButton {
+                                controlStyle: KaakaoControlButton.ControlStyle.Pause
+                                onClicked: console.log("Pause clicked")
+                                KaakaoToolTip { text: "Pause" }
+                            }
+
+                            KaakaoControlButton {
+                                controlStyle: KaakaoControlButton.ControlStyle.Next
+                                onClicked: console.log("Next clicked")
+                                KaakaoToolTip { text: "Next Track" }
+                            }
+
                             // Spacer
                             Item { implicitWidth: 10 }
 

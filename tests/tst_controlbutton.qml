@@ -48,4 +48,54 @@ TestCase {
         btn.active = false
         compare(btn.active, false, "Should support inactive state")
     }
+
+    function test_new_styles() {
+        let btn = createTemporaryObject(buttonComp, null)
+        verify(btn, "ControlButton created successfully")
+
+        // Add Style
+        btn.controlStyle = KaakaoControlButton.ControlStyle.Add
+        compare(btn.controlStyle, KaakaoControlButton.ControlStyle.Add, "Style should be Add")
+        compare(btn.implicitWidth, 16, "Add style implicitWidth should be 16")
+
+        // Remove Style
+        btn.controlStyle = KaakaoControlButton.ControlStyle.Remove
+        compare(btn.controlStyle, KaakaoControlButton.ControlStyle.Remove, "Style should be Remove")
+        compare(btn.implicitWidth, 16, "Remove style implicitWidth should be 16")
+
+        // Gear Style
+        btn.controlStyle = KaakaoControlButton.ControlStyle.Gear
+        compare(btn.controlStyle, KaakaoControlButton.ControlStyle.Gear, "Style should be Gear")
+        compare(btn.implicitWidth, 16, "Gear style implicitWidth should be 16")
+
+        // Info Style
+        btn.controlStyle = KaakaoControlButton.ControlStyle.Info
+        compare(btn.controlStyle, KaakaoControlButton.ControlStyle.Info, "Style should be Info")
+        compare(btn.implicitWidth, 16, "Info style implicitWidth should be 16")
+
+        // Refresh Style
+        btn.controlStyle = KaakaoControlButton.ControlStyle.Refresh
+        compare(btn.controlStyle, KaakaoControlButton.ControlStyle.Refresh, "Style should be Refresh")
+        compare(btn.implicitWidth, 16, "Refresh style implicitWidth should be 16")
+
+        // Play Style
+        btn.controlStyle = KaakaoControlButton.ControlStyle.Play
+        compare(btn.controlStyle, KaakaoControlButton.ControlStyle.Play, "Style should be Play")
+        compare(btn.implicitWidth, 16, "Play style implicitWidth should be 16")
+
+        // Pause Style
+        btn.controlStyle = KaakaoControlButton.ControlStyle.Pause
+        compare(btn.controlStyle, KaakaoControlButton.ControlStyle.Pause, "Style should be Pause")
+        compare(btn.implicitWidth, 16, "Pause style implicitWidth should be 16")
+
+        // Next Style
+        btn.controlStyle = KaakaoControlButton.ControlStyle.Next
+        compare(btn.controlStyle, KaakaoControlButton.ControlStyle.Next, "Style should be Next")
+        compare(btn.implicitWidth, 16, "Next style implicitWidth should be 16")
+
+        // Previous Style
+        btn.controlStyle = KaakaoControlButton.ControlStyle.Previous
+        compare(btn.controlStyle, KaakaoControlButton.ControlStyle.Previous, "Style should be Previous")
+        compare(btn.implicitWidth, 16, "Previous style implicitWidth should be 16")
+    }
 }

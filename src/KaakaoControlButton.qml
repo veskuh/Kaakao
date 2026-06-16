@@ -5,11 +5,11 @@ import Qt5Compat.GraphicalEffects
 /*!
     \qmltype KaakaoControlButton
     \inqmlmodule Kaakao
-    \brief A classical macOS-style control button (close/minimize/zoom/help) for tabs, panels, and window controls.
+    \brief A classical macOS-style control button (close/minimize/zoom/help/add/remove/gear/info/refresh/playback) for tabs, panels, and window controls.
     \inherits QtQuick.Controls.Button
 
     KaakaoControlButton supports inline styles (e.g. tab close buttons, panel controls) and
-    window control styles (traffic lights: close, minimize, zoom) with precise classical macOS aesthetics.
+    window control styles (traffic lights: close, minimize, zoom) with precise classical macOS aesthetics. All styles are circular.
 */
 Button {
     id: control
@@ -17,7 +17,16 @@ Button {
     enum ControlStyle {
         Inline = 0,
         Window = 1,
-        Help = 2
+        Help = 2,
+        Add = 3,
+        Remove = 4,
+        Gear = 5,
+        Info = 6,
+        Refresh = 7,
+        Play = 8,
+        Pause = 9,
+        Next = 10,
+        Previous = 11
     }
 
     enum ControlType {
@@ -37,8 +46,12 @@ Button {
     // even if not hovered individually (typically set when the window titlebar is hovered).
     property bool groupHovered: false
 
-    implicitWidth: 14
-    implicitHeight: 14
+    implicitWidth: {
+        if (controlStyle === KaakaoControlButton.ControlStyle.Inline ||
+            controlStyle === KaakaoControlButton.ControlStyle.Window) return 14
+        return 16 // Help, Info, Add, Remove, Gear, Refresh, Play, Pause, Next, Previous
+    }
+    implicitHeight: implicitWidth
 
     padding: 0
     hoverEnabled: true
@@ -71,7 +84,7 @@ Button {
                     case KaakaoControlButton.ControlType.Zoom:
                         return control.pressed ? "#1FA032" : "#27C93F"
                 }
-            } else { // Help style
+            } else { // Help, Info, Add, Remove, Gear, Refresh, Playback
                 if (control.pressed) {
                     return Theme.buttonPressed
                 }
@@ -94,18 +107,32 @@ Button {
                     case KaakaoControlButton.ControlType.Zoom:
                         return "#1AAB29"
                 }
-            } else if (control.controlStyle === KaakaoControlButton.ControlStyle.Help) {
+            } else if (control.controlStyle === KaakaoControlButton.ControlStyle.Inline) {
+                return "transparent"
+            } else { // Help, Info, Add, Remove, Gear, Refresh, Playback
                 return Theme.buttonBorder
             }
             return "transparent"
         }
 
-        // Help style gradient base
+        // Gradient base for Help, Info, Add, Remove, Gear, Refresh, Playback
         Rectangle {
             anchors.fill: parent
             anchors.margins: 1
-            radius: width / 2
-            visible: control.controlStyle === KaakaoControlButton.ControlStyle.Help && !control.pressed
+            radius: bgRect.radius > 0 ? bgRect.radius - 1 : 0
+            visible: {
+                var s = control.controlStyle
+                return (s === KaakaoControlButton.ControlStyle.Help ||
+                        s === KaakaoControlButton.ControlStyle.Info ||
+                        s === KaakaoControlButton.ControlStyle.Add ||
+                        s === KaakaoControlButton.ControlStyle.Remove ||
+                        s === KaakaoControlButton.ControlStyle.Gear ||
+                        s === KaakaoControlButton.ControlStyle.Refresh ||
+                        s === KaakaoControlButton.ControlStyle.Play ||
+                        s === KaakaoControlButton.ControlStyle.Pause ||
+                        s === KaakaoControlButton.ControlStyle.Next ||
+                        s === KaakaoControlButton.ControlStyle.Previous) && !control.pressed
+            }
             
             gradient: Gradient {
                 GradientStop {
@@ -118,7 +145,7 @@ Button {
                 }
             }
 
-            // Top-edge inner highlight for Help button depth
+            // Top-edge inner highlight for depth
             Rectangle {
                 anchors.top: parent.top
                 anchors.left: parent.left
@@ -128,7 +155,7 @@ Button {
                 anchors.rightMargin: 2
                 height: 1
                 color: Theme.buttonHighlight
-                radius: 1
+                radius: parent.radius > 0 ? parent.radius - 1 : 0
             }
         }
     }
@@ -147,6 +174,201 @@ Button {
             font.bold: true
             color: Theme.primaryAccent
             renderType: Text.NativeRendering
+        }
+
+        // Info button content "i"
+        Text {
+            anchors.centerIn: parent
+            visible: control.controlStyle === KaakaoControlButton.ControlStyle.Info
+            text: "i"
+            font.family: Theme.defaultFont.family
+            font.pixelSize: Math.max(10, control.height * 0.7)
+            font.bold: true
+            color: Theme.primaryText
+            renderType: Text.NativeRendering
+        }
+
+        // Refresh button content "↻"
+        Text {
+            anchors.centerIn: parent
+            visible: control.controlStyle === KaakaoControlButton.ControlStyle.Refresh
+            text: "↻"
+            font.family: Theme.defaultFont.family
+            font.pixelSize: Math.max(11, control.height * 0.65)
+            font.bold: true
+            color: Theme.primaryText
+            renderType: Text.NativeRendering
+        }
+
+        // Play button content "▶"
+        Text {
+            anchors.centerIn: parent
+            anchors.horizontalCenterOffset: 0.5 // visually center triangle
+            visible: control.controlStyle === KaakaoControlButton.ControlStyle.Play
+            text: "▶"
+            font.family: Theme.defaultFont.family
+            font.pixelSize: Math.max(8, control.height * 0.45)
+            color: Theme.primaryText
+            renderType: Text.NativeRendering
+        }
+
+        // Pause symbol (two vertical lines)
+        Item {
+            anchors.centerIn: parent
+            width: Math.max(6, control.width * 0.3)
+            height: Math.max(8, control.height * 0.4)
+            visible: control.controlStyle === KaakaoControlButton.ControlStyle.Pause
+
+            // Left bar
+            Rectangle {
+                anchors.left: parent.left
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                width: 1.5
+                color: Theme.primaryText
+            }
+            // Right bar
+            Rectangle {
+                anchors.right: parent.right
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                width: 1.5
+                color: Theme.primaryText
+            }
+        }
+
+        // Next symbol (triangle + line)
+        Item {
+            anchors.centerIn: parent
+            width: Math.max(8, control.width * 0.4)
+            height: Math.max(8, control.height * 0.4)
+            visible: control.controlStyle === KaakaoControlButton.ControlStyle.Next
+
+            // Triangle
+            Text {
+                anchors.left: parent.left
+                anchors.verticalCenter: parent.verticalCenter
+                text: "▶"
+                font.family: Theme.defaultFont.family
+                font.pixelSize: parent.height
+                color: Theme.primaryText
+                renderType: Text.NativeRendering
+            }
+
+            // Vertical line
+            Rectangle {
+                anchors.right: parent.right
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: 0.5
+                anchors.topMargin: 0.5
+                width: 1.5
+                color: Theme.primaryText
+            }
+        }
+
+        // Previous symbol (line + left triangle)
+        Item {
+            anchors.centerIn: parent
+            width: Math.max(8, control.width * 0.4)
+            height: Math.max(8, control.height * 0.4)
+            visible: control.controlStyle === KaakaoControlButton.ControlStyle.Previous
+
+            // Vertical line
+            Rectangle {
+                anchors.left: parent.left
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: 0.5
+                anchors.topMargin: 0.5
+                width: 1.5
+                color: Theme.primaryText
+            }
+
+            // Triangle
+            Text {
+                anchors.right: parent.right
+                anchors.verticalCenter: parent.verticalCenter
+                text: "◀"
+                font.family: Theme.defaultFont.family
+                font.pixelSize: parent.height
+                color: Theme.primaryText
+                renderType: Text.NativeRendering
+            }
+        }
+
+        // Add symbol (plus sign)
+        Item {
+            anchors.centerIn: parent
+            width: Math.max(8, control.width * 0.45)
+            height: width
+            visible: control.controlStyle === KaakaoControlButton.ControlStyle.Add
+
+            // Horizontal line
+            Rectangle {
+                anchors.centerIn: parent
+                width: parent.width
+                height: 1.2
+                color: Theme.primaryText
+            }
+            // Vertical line
+            Rectangle {
+                anchors.centerIn: parent
+                width: 1.2
+                height: parent.height
+                color: Theme.primaryText
+            }
+        }
+
+        // Remove symbol (minus sign)
+        Rectangle {
+            anchors.centerIn: parent
+            width: Math.max(8, control.width * 0.45)
+            height: 1.2
+            visible: control.controlStyle === KaakaoControlButton.ControlStyle.Remove
+            color: Theme.primaryText
+        }
+
+        // Gear symbol (Action cog)
+        Item {
+            id: gearContainer
+            anchors.centerIn: parent
+            width: Math.max(10, control.width * 0.5)
+            height: width
+            visible: control.controlStyle === KaakaoControlButton.ControlStyle.Gear
+
+            // Outer teeth
+            Repeater {
+                model: 8
+                Rectangle {
+                    anchors.centerIn: parent
+                    width: 2.2
+                    height: gearContainer.height
+                    color: Theme.primaryText
+                    rotation: index * 45
+                }
+            }
+
+            // Gear body (solid disk)
+            Rectangle {
+                anchors.centerIn: parent
+                width: gearContainer.width * 0.72
+                height: width
+                radius: width / 2
+                color: Theme.primaryText
+            }
+
+            // Gear center hole
+            Rectangle {
+                anchors.centerIn: parent
+                width: gearContainer.width * 0.28
+                height: width
+                radius: width / 2
+                color: {
+                    if (control.pressed) return Theme.buttonPressed
+                    return Theme.isDarkMode ? "#4E4E4E" : "#ECECEC" // Approximate button gradient color at center
+                }
+            }
         }
 
         // Inline close or Window close symbol (×)
