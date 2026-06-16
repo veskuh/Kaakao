@@ -99,7 +99,9 @@ Control {
                     id: label
                     anchors.centerIn: parent
                     text: modelData
-                    font: Theme.defaultFont
+                    font.family: Theme.defaultFont.family
+                    font.pixelSize: Theme.defaultFont.pixelSize
+                    font.weight: control.currentIndex === index ? Font.DemiBold : Font.Normal
                     color: Theme.primaryText
                     opacity: control.enabled ? 1.0 : Theme.disabledOpacity
                 }

@@ -37,10 +37,18 @@ TestCase {
     function test_segmented() {
         compare(segmented.currentIndex, 0, "Initial index should be 0")
         compare(segmented.model.length, 3, "Model should have 3 items")
+
+        // First item is selected initially, so its label should be DemiBold
+        let label0 = segmented.contentItem.children[0].children[0]
+        let label1 = segmented.contentItem.children[1].children[0]
+        compare(label0.font.weight, Font.DemiBold, "Active segment should be DemiBold")
+        compare(label1.font.weight, Font.Normal, "Inactive segment should be Normal weight")
         
         // Find the second item and click it
         segmented.currentIndex = 1
         compare(segmented.currentIndex, 1, "Index should update to 1")
+        compare(label0.font.weight, Font.Normal, "Previously active segment should be Normal weight")
+        compare(label1.font.weight, Font.DemiBold, "New active segment should be DemiBold")
     }
 
     function test_textarea() {

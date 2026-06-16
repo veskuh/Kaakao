@@ -30,7 +30,9 @@ TabButton {
     leftPadding: 14
     rightPadding: 14
 
-    font: Theme.defaultFont
+    font.family: Theme.defaultFont.family
+    font.pixelSize: Theme.defaultFont.pixelSize
+    font.weight: control.checked ? Font.DemiBold : Font.Normal
 
     contentItem: Label {
         text: control.text
@@ -78,14 +80,14 @@ TabButton {
                         position: 0.0
                         color: {
                             if (control.pressed) return control.checked ? Theme.buttonPressed : Theme.tabInactivePressed
-                            return control.checked ? Theme.buttonGradTop : Theme.tabInactiveGradTop
+                            return control.checked ? Theme.tabActiveGradTop : Theme.tabInactiveGradTop
                         }
                     }
                     GradientStop {
                         position: 1.0
                         color: {
                             if (control.pressed) return control.checked ? Theme.buttonPressed : Theme.tabInactivePressed
-                            return control.checked ? Theme.buttonGradBottom : Theme.tabInactiveGradBottom
+                            return control.checked ? Theme.tabActiveGradBottom : Theme.tabInactiveGradBottom
                         }
                     }
                 }
@@ -101,15 +103,15 @@ TabButton {
                 }
             }
 
-            // Hide the bottom border when selected (merge into content)
+            // Bottom accent line when selected
             Rectangle {
                 anchors.bottom: parent.bottom
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.leftMargin: 1
                 anchors.rightMargin: 1
-                height: 1
-                color: control.checked ? (Theme.isDarkMode ? Theme.buttonGradBottom : Theme.buttonGradTop) : "transparent"
+                height: 2
+                color: control.checked ? Theme.primaryAccent : "transparent"
                 visible: control.checked
             }
         }

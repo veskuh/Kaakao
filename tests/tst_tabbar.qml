@@ -81,4 +81,13 @@ TestCase {
         compare(activeTab.contentItem.opacity, 1.0, "Active tab text should be fully opaque")
         compare(inactiveTab.contentItem.opacity, 0.7, "Inactive tab text should be dimmed")
     }
+
+    function test_07_checked_font_weight() {
+        let bar = createTemporaryObject(tabBarComponent, this)
+        let activeTab = bar.itemAt(0)
+        let inactiveTab = bar.itemAt(1)
+
+        compare(activeTab.font.weight, Font.DemiBold, "Active tab text should be demibold")
+        compare(inactiveTab.font.weight, Font.Normal, "Inactive tab text should be normal weight")
+    }
 }

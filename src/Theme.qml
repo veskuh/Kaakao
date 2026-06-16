@@ -230,6 +230,8 @@ QtObject {
 
     // Tab Bar Colors
     readonly property color tabBarBorder: isDarkMode ? "#121212" : "#B0B0B0"
+    readonly property color tabActiveGradTop: isDarkMode ? "#323232" : "#FFFFFF"
+    readonly property color tabActiveGradBottom: isDarkMode ? "#262626" : "#F2F2F2"
     readonly property color tabInactiveGradTop: isDarkMode ? "#3C3C3C" : "#DCDCDC"
     readonly property color tabInactiveGradBottom: isDarkMode ? "#333333" : "#CCCCCC"
     readonly property color tabInactivePressed: isDarkMode ? "#2E2E2E" : "#C0C0C0"
