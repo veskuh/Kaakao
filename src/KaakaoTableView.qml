@@ -113,7 +113,7 @@ FocusScope {
                                  if (modelData.sortable) {
                                      let newOrder;
                                      if (modelData.sortOrder === -1) {
-                                         newOrder = (modelData.role === "name") ? Qt.AscendingOrder : Qt.DescendingOrder;
+                                         newOrder = (modelData.defaultSortOrder !== undefined) ? modelData.defaultSortOrder : Qt.AscendingOrder;
                                      } else {
                                          newOrder = (modelData.sortOrder === Qt.AscendingOrder) ? Qt.DescendingOrder : Qt.AscendingOrder;
                                      }

@@ -56,6 +56,11 @@ QtObject {
     */
     property int sortOrder: -1 // -1 for none, Qt.AscendingOrder, Qt.DescendingOrder
 
+    /*! \qmlproperty int KaakaoTableColumn::defaultSortOrder
+        The default sort order when the column is first clicked: Qt.AscendingOrder or Qt.DescendingOrder. Defaults to Qt.AscendingOrder.
+    */
+    property int defaultSortOrder: Qt.AscendingOrder
+
     /*! \qmlproperty bool KaakaoTableColumn::isSorted
         True if this column is the one currently determining the sort order.
     */
