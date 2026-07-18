@@ -9,8 +9,19 @@ import QtQuick.Controls.Basic
     KaakaoTableView provides a classic macOS-style table with resizable headers,
     sorting support, zebra striping, and full-row selection.
 */
-Item {
+FocusScope {
     id: control
+    Keys.forwardTo: [listView]
+
+    onActiveFocusChanged: {
+        if (activeFocus) {
+            listView.forceActiveFocus()
+        }
+    }
+
+    function forceActiveFocus() {
+        listView.forceActiveFocus()
+    }
 
     /*! \qmlproperty list<KaakaoTableColumn> KaakaoTableView::columns
         The list of column definitions for the table.
@@ -32,6 +43,19 @@ Item {
     */
     signal sortRequested(string role, int order)
 
+    function positionViewAtIndex(index, mode) {
+        listView.positionViewAtIndex(index, mode)
+    }
+
+    property Component delegate: defaultDelegate
+
+    Component {
+        id: defaultDelegate
+        KaakaoTableRowDelegate {
+            columns: control.columns
+        }
+    }
+
     implicitWidth: 400
     implicitHeight: 300
 
@@ -44,17 +68,17 @@ Item {
         z: -1
     }
 
-    Column {
-        anchors.fill: parent
-        anchors.margins: 1
-        spacing: 0
-
         // Table Header
         Rectangle {
             id: headerArea
-            width: parent.width
+            objectName: "listHeader"
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.margins: 1
             height: 22
             z: 2
+            visible: control.visible
             
             gradient: Gradient {
                 GradientStop { position: 0.0; color: Theme.headerBackgroundGradTop }
@@ -85,18 +109,23 @@ Item {
                             objectName: "headerClickArea_" + index
                             anchors.fill: parent
                             hoverEnabled: true
-                            onClicked: {
-                                if (modelData.sortable) {
-                                    let newOrder = modelData.sortOrder === Qt.AscendingOrder ? Qt.DescendingOrder : Qt.AscendingOrder
-                                    // Reset other columns
-                                    for (let i = 0; i < control.columns.length; ++i) {
-                                        if (control.columns[i] !== modelData)
-                                            control.columns[i].sortOrder = -1
-                                    }
-                                    modelData.sortOrder = newOrder
-                                    control.sortRequested(modelData.role, newOrder)
-                                }
-                            }
+                             onClicked: {
+                                 if (modelData.sortable) {
+                                     let newOrder;
+                                     if (modelData.sortOrder === -1) {
+                                         newOrder = (modelData.role === "name") ? Qt.AscendingOrder : Qt.DescendingOrder;
+                                     } else {
+                                         newOrder = (modelData.sortOrder === Qt.AscendingOrder) ? Qt.DescendingOrder : Qt.AscendingOrder;
+                                     }
+                                     // Reset other columns
+                                     for (let i = 0; i < control.columns.length; ++i) {
+                                         if (control.columns[i] !== modelData)
+                                             control.columns[i].sortOrder = -1
+                                     }
+                                     modelData.sortOrder = newOrder
+                                     control.sortRequested(modelData.role, newOrder)
+                                 }
+                             }
                         }
 
                         Label {
@@ -173,18 +202,23 @@ Item {
         // Table Body
         ListView {
             id: listView
-            width: parent.width
-            height: parent.height - headerArea.height
+            objectName: "listView"
+            anchors.top: headerArea.bottom
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            anchors.margins: 1
             clip: true
             focus: true
+            onCurrentItemChanged: {
+                Keys.forwardTo = currentItem ? [currentItem] : []
+            }
             interactive: true
             boundsBehavior: Flickable.StopAtBounds
             keyNavigationEnabled: true
             highlightMoveDuration: 0
 
-            delegate: KaakaoTableRowDelegate {
-                columns: control.columns
-            }
+            delegate: control.delegate
 
             ScrollBar.vertical: ScrollBar {
                 policy: ScrollBar.AsNeeded
@@ -203,5 +237,4 @@ Item {
                 }
             }
         }
-    }
 }
