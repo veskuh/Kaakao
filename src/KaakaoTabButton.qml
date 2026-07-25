@@ -21,6 +21,8 @@ import QtQuick.Controls.Basic
 TabButton {
     id: control
 
+    checked: TabBar.index >= 0 && TabBar.tabBar && TabBar.index === TabBar.tabBar.currentIndex
+
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitContentWidth + leftPadding + rightPadding, 70)
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
