@@ -36,6 +36,11 @@ QtObject {
     */
     property bool sortable: true
 
+    /*! \qmlproperty bool KaakaoTableColumn::visible
+        Whether the column is visible. Defaults to true.
+    */
+    property bool visible: true
+
     /*! \qmlproperty int KaakaoTableColumn::elide
         The text elide mode: Text.ElideNone, Text.ElideLeft, Text.ElideMiddle, Text.ElideRight.
     */

@@ -26,7 +26,7 @@ FocusScope {
     /*! \qmlproperty list<KaakaoTableColumn> KaakaoTableView::columns
         The list of column definitions for the table.
     */
-    default property list<KaakaoTableColumn> columns
+    property list<KaakaoTableColumn> columns
 
     /*! \qmlproperty int KaakaoTableView::count
         The number of items in the table model.
@@ -106,7 +106,8 @@ FocusScope {
                 Repeater {
                     model: control.columns
                     delegate: Item {
-                        width: modelData.width
+                        visible: modelData.visible !== false
+                        width: modelData.visible !== false ? modelData.width : 0
                         height: headerArea.height
                         z: columns.length - index // Ensure earlier columns (and their resize handles) are on top of later ones
 
