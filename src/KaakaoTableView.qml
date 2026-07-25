@@ -26,7 +26,12 @@ FocusScope {
     /*! \qmlproperty list<KaakaoTableColumn> KaakaoTableView::columns
         The list of column definitions for the table.
     */
-    property list<KaakaoTableColumn> columns
+    default property list<KaakaoTableColumn> columns
+
+    /*! \qmlproperty int KaakaoTableView::count
+        The number of items in the table model.
+    */
+    readonly property int count: listView.count
 
     /*! \qmlproperty var KaakaoTableView::model
         The data model for the table.
@@ -221,7 +226,7 @@ FocusScope {
             delegate: control.delegate
 
             ScrollBar.vertical: ScrollBar {
-                policy: ScrollBar.AsNeeded
+                policy: ScrollBar.AlwaysOn
             }
 
             // Inner top shadow
