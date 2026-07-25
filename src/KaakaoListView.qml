@@ -14,12 +14,16 @@ ListView {
     id: control
 
     // Desktop Interaction Defaults
-    interactive: false // Disable mobile touch-drag flicking
+    interactive: true // Enable scrolling
     boundsBehavior: Flickable.StopAtBounds // No rubber-band bouncing
     clip: true
     focus: true
     keyNavigationEnabled: true
     highlightMoveDuration: 0 // Desktop selection jumps instantly, it does not slide
+
+    ScrollBar.vertical: ScrollBar {
+        policy: ScrollBar.AlwaysOn
+    }
 
     // Enforce an outer structural frame (Sunken well aesthetic)
     Rectangle {
