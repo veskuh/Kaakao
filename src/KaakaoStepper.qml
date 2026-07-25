@@ -25,6 +25,14 @@ SpinBox {
     // Ensure the entire control fades when disabled
     opacity: enabled ? 1.0 : Theme.disabledOpacity
 
+    function increase() {
+        value = Math.min(to, value + stepSize)
+    }
+
+    function decrease() {
+        value = Math.max(from, value - stepSize)
+    }
+
     contentItem: TextInput {
         id: textInput
         text: control.displayText
