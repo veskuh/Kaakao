@@ -226,7 +226,7 @@ FocusScope {
             delegate: control.delegate
 
             ScrollBar.vertical: ScrollBar {
-                policy: ScrollBar.AlwaysOn
+                policy: ScrollBar.AsNeeded
             }
 
             // Inner top shadow
